@@ -37,35 +37,46 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="600dp"
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/button1"
-            android:textSize="9dp"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:text="La Liga" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="La Liga"
+            android:textSize="9dp" />
+
         <Button
             android:id="@+id/button2"
-            android:textSize="9dp"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:text="Premier League" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="Premier League"
+            android:textSize="9dp" />
+
         <Button
             android:id="@+id/button3"
-            android:textSize="9dp"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:text="Bundesliga" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="Bundesliga"
+            android:textSize="9dp" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="105dp"
-            android:layout_height="75dp"
-            android:text="ELO'S"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="ELO"
             android:textSize="9dp" />
 
 
