@@ -30,6 +30,7 @@ public class MainActivityJ extends AppCompatActivity {
     private Button button1;
     private Button button2;
     private Button button3;
+    private Button button4;
 
 
     @Override
@@ -73,6 +74,21 @@ public class MainActivityJ extends AppCompatActivity {
                 openPremierLeague();
             }
         });
+        button3 = (Button) findViewById(R.id.button2);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPremierLeague();
+            }
+        });
+
+        button4 = (Button) findViewById(R.id.button5);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLeagues();
+            }
+        });
 
     }
 
@@ -90,6 +106,10 @@ public class MainActivityJ extends AppCompatActivity {
     }
     public void openPremierLeague() {
         Intent intent = new Intent(this, PremierLeagueActivity.class);
+        startActivity(intent);
+    }
+    public void openLeagues() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

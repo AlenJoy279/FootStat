@@ -36,11 +36,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="League Database" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="450dp"
         android:layout_height="75dp"
+        android:layout_alignBottom="@+id/textView88"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="175dp"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
         <Button

@@ -26,7 +26,7 @@ public class BundesligaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bundesliga);
 
-        TextView txt = (TextView) findViewById(R.id.textView);
+        TextView txt = (TextView) findViewById(R.id.textView0);
 
         // Retrofit Builder
         Retrofit retrofit = new Retrofit.Builder().baseUrl(APICallBundesliga.BASE_URL)
