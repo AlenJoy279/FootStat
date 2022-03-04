@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".models.jaime.PremierLeagueActivity">
 
+    <TextView
+        android:id="@+id/textView77"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="premier league"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
 
         android:layout_width="match_parent"

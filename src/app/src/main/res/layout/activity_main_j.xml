@@ -6,31 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".models.jaime.MainActivityJ">
 
-    <ScrollView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16sp"
-        android:scrollbarSize="25sp"
-        tools:context=".jaime.MainActivityJ">
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="100dp"
+        android:text="FootStat"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="266dp"
-            android:text="FOOTSTAT"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </ScrollView>
-
+    <TextView
+        android:id="@+id/textView88"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="200dp"
+        android:text="Thanks for using FootStat ! Click one of the buttons above to view stats or elo rankings."
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
