@@ -74,44 +74,6 @@ public class MainActivityJ extends AppCompatActivity {
             }
         });
 
-
-        // Retrofit Builder
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(APICall.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // instance for interface
-        APICall APICall = retrofit.create(APICall.class);
-
-        Call<MainResponse>call = APICall.getData();
-
-        call.enqueue(new Callback<MainResponse>() {
-            @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-               /* if (response.code() != 200) {
-                    txt.setText("Check connection!  " + response.code());
-                } */
-                MainResponse mainResponse = response.body();
-
-                //PutDataIntoRecyclerView(Arrays.asList(mainResponse.getStandings()));
-
-
-                dataList = new ArrayList(Arrays.asList(mainResponse.getStandings()));
-
-                dataList = mainResponse.getStandings();
-                txt.append(dataList.get(0).getTable().get(0).getTeam().toString());
-
-                txt.append("Stage = " + dataList.get(0).getStage() + "\n");
-                for (int i = 0; i < dataList.get(0).getTable().size(); i++) {
-                    txt.append("NAME : " + dataList.get(0).getTable().get(i).getTeam().getName() + "\n");
-                    txt.append("POSITION : " + dataList.get(0).getTable().get(i).getPosition() + "\n");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
-            }
-        });
     }
 
     public void openBundesliga() {

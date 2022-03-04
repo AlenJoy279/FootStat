@@ -51,7 +51,6 @@ public class BundesligaActivity extends AppCompatActivity {
 
                 dataList = mainResponse.getStandings();
 
-                txt.append("Stage = " + dataList.get(0).getStage() + "\n");
                 for (int i = 0; i < dataList.get(0).getTable().size(); i++) {
                     txt.append("NAME : " + dataList.get(0).getTable().get(i).getTeam().getName() + "\n");
                     txt.append("POSITION : " + dataList.get(0).getTable().get(i).getPosition() + "\n");

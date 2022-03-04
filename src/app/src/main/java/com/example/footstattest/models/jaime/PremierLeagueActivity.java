@@ -23,51 +23,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class PremierLeagueActivity extends AppCompatActivity {
-    private Button button1;
     List<Standing> dataList;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_j);
+        setContentView(R.layout.activity_premier_league);
         Context context;
 
-        TextView txt = (TextView) findViewById(R.id.textView7);
-        button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openBundesliga();
-            }
-        });
-
-        button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLaLiga();
-            }
-        });
-
-        button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRankings();
-            }
-        });
-
-        button4 = (Button) findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPremierLeague();
-            }
-        });
+        TextView txt = (TextView) findViewById(R.id.textView5);
 
 
         // Retrofit Builder
@@ -83,9 +47,6 @@ public class PremierLeagueActivity extends AppCompatActivity {
         call.enqueue(new Callback<MainResponse>() {
             @Override
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-               /* if (response.code() != 200) {
-                    txt.setText("Check connection!  " + response.code());
-                } */
                 MainResponse mainResponse = response.body();
 
                 //PutDataIntoRecyclerView(Arrays.asList(mainResponse.getStandings()));
@@ -94,7 +55,6 @@ public class PremierLeagueActivity extends AppCompatActivity {
                 dataList = new ArrayList(Arrays.asList(mainResponse.getStandings()));
 
                 dataList = mainResponse.getStandings();
-                txt.append(dataList.get(0).getTable().get(0).getTeam().toString());
 
                 txt.append("Stage = " + dataList.get(0).getStage() + "\n");
                 for (int i = 0; i < dataList.get(0).getTable().size(); i++) {
@@ -107,22 +67,5 @@ public class PremierLeagueActivity extends AppCompatActivity {
             public void onFailure(Call<MainResponse> call, Throwable t) {
             }
         });
-    }
-
-    public void openBundesliga() {
-        Intent intent = new Intent(this, BundesligaActivity.class);
-        startActivity(intent);
-    }
-    public void openLaLiga() {
-        Intent intent = new Intent(this, LaLigaActivity.class);
-        startActivity(intent);
-    }
-    public void openRankings() {
-        Intent intent = new Intent(this, TeamRankings.class);
-        startActivity(intent);
-    }
-    public void openPremierLeague() {
-        Intent intent = new Intent(this, PremierLeagueActivity.class);
-        startActivity(intent);
     }
 }

@@ -51,7 +51,6 @@ public class LaLigaActivity extends AppCompatActivity {
 
                 LaLigadataList = mainResponse.getStandings();
 
-                txt.append("Stage = " + LaLigadataList.get(0).getStage() + "\n");
                 for (int i = 0; i < LaLigadataList.get(0).getTable().size(); i++) {
                     txt.append("NAME : " + LaLigadataList.get(0).getTable().get(i).getTeam().getName() + "\n");
                     txt.append("POSITION : " + LaLigadataList.get(0).getTable().get(i).getPosition() + "\n");
