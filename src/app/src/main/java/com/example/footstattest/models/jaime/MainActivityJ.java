@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.footstattest.LoginActivity;
+import com.example.footstattest.MainActivity;
 import com.example.footstattest.R;
 
 import java.util.ArrayList;
@@ -34,6 +36,9 @@ public class MainActivityJ extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_j);
+
+//        startActivity(new Intent(MainActivityJ.this, LoginActivity.class));
+        
         Context context;
 
         TextView txt = (TextView) findViewById(R.id.textView7);

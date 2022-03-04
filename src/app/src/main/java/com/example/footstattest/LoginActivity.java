@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.footstattest.models.jaime.MainActivityJ;
 import com.example.footstattest.util.LoginApi;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -118,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                     //Go to ListActivity
                                                     startActivity(new Intent(LoginActivity.this,
-                                                            StarterActivity.class));
+                                                            MainActivityJ.class));
 
 
                                                 }
