@@ -26,27 +26,32 @@ public class Season {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getStartDate() {
         return startDate;
     }
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
+
     public String getEndDate() {
         return endDate;
     }
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
     public Integer getCurrentMatchday() {
         return currentMatchday;
     }
+
     public void setCurrentMatchday(Integer currentMatchday) {
         this.currentMatchday = currentMatchday;
     }
     public List<String> getAvailableStages() {
         return availableStages;
     }
+
     public void setAvailableStages(List<String> availableStages) {
         this.availableStages = availableStages;
     }

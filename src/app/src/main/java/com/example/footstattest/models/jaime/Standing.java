@@ -16,24 +16,28 @@ public class Standing {
         this.table = table;
     }
 
+    // Getters and Setters
     public String getStage() {
         return stage;
     }
     public void setStage(String stage) {
         this.stage = stage;
     }
+
     public String getType() {
         return type;
     }
     public void setType(String type) {
         this.type = type;
     }
+
     public Object getGroup() {
         return group;
     }
     public void setGroup(Object group) {
         this.group = group;
     }
+
     public List<Table> getTable() {
         return table;
     }
