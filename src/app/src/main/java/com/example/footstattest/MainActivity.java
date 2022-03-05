@@ -1,30 +1,46 @@
 package com.example.footstattest;
 
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.footstattest.models.League;
+import com.example.footstattest.models.ConvertedWinner;
 import com.example.footstattest.models.LeagueViewModel;
+import com.example.footstattest.models.WinnerViewModel;
+import com.example.footstattest.util.LeagueWinnerConverter;
+import com.example.footstattest.util.RecyclerViewAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private LeagueViewModel leagueViewModel;
+    private WinnerViewModel winnerViewModel;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
     private TextView textView;
-    private ListView listView;
-    private ArrayList<String> leagueString;
+    private LiveData<List<ConvertedWinner>> winnerList;
+
+
+    LeagueWinnerConverter winners = LeagueWinnerConverter.createWinners();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView0);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 
@@ -32,20 +48,21 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("LeagueRepo","onCreate: " + allLeagues.getLeagueList().get(0).getEmblemUrl());
 
 
-        leagueViewModel = new ViewModelProvider.AndroidViewModelFactory(
-                MainActivity.this.getApplication()).create(LeagueViewModel.class);
 
-        leagueViewModel.getAllLeagues().observe(this, leagues -> {
+        winnerViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(WinnerViewModel.class);
 
-            StringBuilder builder = new StringBuilder();
+        winnerViewModel.getAllWinners().observe(this, winners -> {
 
-            for (League league:leagues) {
-                builder.append(" - Name: ").append(league.getName()).append("Code: ")
-                        .append(league.getCode()).append(" EmblemUrl: ").append(league.getEmblemUrl()).append(league.getId()).append("\n\n");
+            recyclerViewAdapter = new RecyclerViewAdapter(winners, this);
 
-            }
-            textView.setText(builder);
+            recyclerView.setAdapter(recyclerViewAdapter);
+
+
         });
+
+
+
+
 
 
 

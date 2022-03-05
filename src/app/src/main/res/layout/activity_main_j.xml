@@ -27,7 +27,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="200dp"
-        android:text="Thanks for using FootStat ! Click one of the buttons above to view stats or elo rankings."
+        android:text="Thanks for using FootStat ! Click one of the buttons above to view stats or elo rankings. Tap the button below to view the League database, which shows historical data of 8 major european leagues."
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
