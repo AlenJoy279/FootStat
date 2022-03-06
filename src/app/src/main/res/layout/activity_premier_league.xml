@@ -26,16 +26,15 @@
         android:layout_height="match_parent"
         android:padding="16sp"
         android:scrollbarSize="25sp"
+        style="@style/defects_fixed"
         tools:context=".jaime.MainActivityJ">
 
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="200dp"
+            style="@style/text_defects_fixed"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="266dp"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

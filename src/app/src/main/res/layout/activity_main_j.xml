@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/textView88"
         android:layout_width="400dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="200dp"
         android:text="Thanks for using FootStat ! Click one of the buttons above to view stats or elo rankings. Tap the button below to view the League database, which shows historical data of 8 major european leagues."

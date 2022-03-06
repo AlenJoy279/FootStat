@@ -86,7 +86,7 @@ public class TeamRankings extends AppCompatActivity {
                 for (String name: rankings.keySet()) {
                     String key = name.toString();
                     Double value =   rankings.get(name);
-                    txt.append("Team: " + key + "\tELO: " + value + "\n");
+                    txt.append("Team: " + key + "\nELO: " + value + "\n\n");
                 }
             }
 

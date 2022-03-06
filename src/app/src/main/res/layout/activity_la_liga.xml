@@ -22,25 +22,17 @@
 
     <ScrollView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16sp"
-        android:scrollbarSize="25sp"
-        tools:context=".jaime.MainActivityJ">
+        tools:context=".jaime.MainActivityJ"
+        style="@style/defects_fixed">
 
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="266dp"
-            android:textAlignment="center"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/text_defects_fixed" />
     </ScrollView>
+
 </RelativeLayout>
