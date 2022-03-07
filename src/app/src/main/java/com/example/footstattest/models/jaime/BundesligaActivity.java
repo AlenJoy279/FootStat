@@ -1,12 +1,13 @@
 package com.example.footstattest.models.jaime;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footstattest.R;
+import com.example.footstattest.models.TeamListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,13 +21,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BundesligaActivity extends AppCompatActivity {
     List<Standing> dataList;
+    public static final String TAG = "Bundesliga";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bundesliga);
+        ListView bundesliga = (ListView) findViewById(R.id.bundes_list);
+        ArrayList<Table> tableList = new ArrayList<>();
 
-        TextView txt = (TextView) findViewById(R.id.textView0);
 
         // Retrofit Builder
         Retrofit retrofit = new Retrofit.Builder().baseUrl(APICallBundesliga.BASE_URL)
@@ -44,17 +47,28 @@ public class BundesligaActivity extends AppCompatActivity {
 
                 MainResponse mainResponse = response.body();
 
-                //PutDataIntoRecyclerView(Arrays.asList(mainResponse.getStandings()));
-
-
                 dataList = new ArrayList(Arrays.asList(mainResponse.getStandings()));
 
                 dataList = mainResponse.getStandings();
 
                 for (int i = 0; i < dataList.get(0).getTable().size(); i++) {
-                    txt.append("NAME : " + dataList.get(0).getTable().get(i).getTeam().getName() + "\n");
-                    txt.append("POSITION : " + dataList.get(0).getTable().get(i).getPosition() + "\n\n");
+
+                    Table printFormat = new Table();
+                    printFormat.setName(dataList.get(0).getTable().get(i).getTeam().getName());
+                    printFormat.setPosition(dataList.get(0).getTable().get(i).getPosition());
+                    printFormat.setWon(dataList.get(0).getTable().get(i).getWon());
+                    printFormat.setDraw(dataList.get(0).getTable().get(i).getDraw());
+                    printFormat.setLost(dataList.get(0).getTable().get(i).getLost());
+                    Log.d(TAG, "onResponse: " + printFormat.getName());
+                    tableList.add(printFormat);
+
+
                 }
+                Log.d(TAG, "onResponse: " + tableList.size());
+
+
+                TeamListAdapter adapterA = new TeamListAdapter(BundesligaActivity.this, R.layout.league_row, tableList);
+                bundesliga.setAdapter(adapterA);
             }
 
             @Override
@@ -62,24 +76,7 @@ public class BundesligaActivity extends AppCompatActivity {
             }
         });
     }
-    public void openBundesliga() {
-        Intent intent = new Intent(this, BundesligaActivity.class);
-        startActivity(intent);
-    }
-    public void openLaLiga() {
-        Intent intent = new Intent(this, LaLigaActivity.class);
-        startActivity(intent);
-    }
 
-    public void openPremierLeague() {
-        Intent intent = new Intent(this, PremierLeagueActivity.class);
-        startActivity(intent);
-    }
-
-    public void openRankings() {
-        Intent intent = new Intent(this, TeamRankings.class);
-        startActivity(intent);
-    }
 
 
 }

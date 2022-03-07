@@ -31,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
+// Facilitates logging in by looking up the FireStore database for the user and their generated ID.
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private ProgressBar progressBar;
 
+    // Our FireStore collection database containing users
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
 
@@ -77,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Retrieves username and password from text inputs
 
                 loginEmailPasswordUser(emailAddres.getText().toString().trim(),
                         password.getText().toString().trim());
@@ -91,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(email)
                 && !TextUtils.isEmpty(pwd)) {
+
+            // If username and password are not empty, pass to firebase Auth handler
             firebaseAuth.signInWithEmailAndPassword(email, pwd)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -99,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                             assert user != null;
                             final String currentUserId = user.getUid();
 
+                            // Look for user in collection
                             collectionReference
                                     .whereEqualTo("userId", currentUserId)
                                     .addSnapshotListener(new EventListener<QuerySnapshot>() {

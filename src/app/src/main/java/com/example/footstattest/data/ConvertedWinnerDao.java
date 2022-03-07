@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface ConvertedWinnerDao {
 
-    // CRUD ops
+    // CRUD Ops
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(ConvertedWinner winner);
 

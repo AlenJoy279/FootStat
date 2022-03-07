@@ -1,13 +1,14 @@
 package com.example.footstattest.models.jaime;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footstattest.R;
+import com.example.footstattest.models.TeamListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,15 +21,22 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LaLigaActivity extends AppCompatActivity {
+
+    public static final String TAG = "LaLiga";
     List<Standing> LaLigadataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_la_liga);
+        setContentView(R.layout.activity_liga);
+        Log.d(TAG, "onCreate: Started");
 
+        ListView liga = (ListView) findViewById(R.id.liga_list);
 
-        TextView txt = (TextView) findViewById(R.id.textView2);
+        
+
+        ArrayList<Table> tableList = new ArrayList<>();
+
 
         // Retrofit Builder
         Retrofit retrofit = new Retrofit.Builder().baseUrl(APICallLaLiga.BASE_URL)
@@ -45,41 +53,42 @@ public class LaLigaActivity extends AppCompatActivity {
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 MainResponse mainResponse = response.body();
 
-                //PutDataIntoRecyclerView(Arrays.asList(mainResponse.getStandings()));
 
                 LaLigadataList = new ArrayList(Arrays.asList(mainResponse.getStandings()));
 
                 LaLigadataList = mainResponse.getStandings();
 
+
+
                 for (int i = 0; i < LaLigadataList.get(0).getTable().size(); i++) {
-                    txt.append("NAME : " + LaLigadataList.get(0).getTable().get(i).getTeam().getName() + "\n");
-                    txt.append("POSITION : " + LaLigadataList.get(0).getTable().get(i).getPosition() + "\n");
-                    txt.append("WINS : " + LaLigadataList.get(0).getTable().get(i).getWon() + "\n\n");
+
+                    Table printFormat = new Table();
+                    printFormat.setName(LaLigadataList.get(0).getTable().get(i).getTeam().getName());
+                    printFormat.setPosition(LaLigadataList.get(0).getTable().get(i).getPosition());
+                    printFormat.setWon(LaLigadataList.get(0).getTable().get(i).getWon());
+                    printFormat.setDraw(LaLigadataList.get(0).getTable().get(i).getDraw());
+                    printFormat.setLost(LaLigadataList.get(0).getTable().get(i).getLost());
+                    Log.d(TAG, "onResponse: " + printFormat.getName());
+                    tableList.add(printFormat);
+
+
                 }
+                Log.d(TAG, "onResponse: " + tableList.size());
+
+
+                TeamListAdapter adapterA = new TeamListAdapter(LaLigaActivity.this, R.layout.league_row, tableList);
+                liga.setAdapter(adapterA);
+
+
             }
 
             @Override
             public void onFailure(Call<MainResponse> call, Throwable t) {
             }
         });
-    }
-    public void openBundesliga() {
-        Intent intent = new Intent(this, BundesligaActivity.class);
-        startActivity(intent);
-    }
-    public void openLaLiga() {
-        Intent intent = new Intent(this, LaLigaActivity.class);
-        startActivity(intent);
+
+
     }
 
-    public void openPremierLeague() {
-        Intent intent = new Intent(this, PremierLeagueActivity.class);
-        startActivity(intent);
-    }
-
-    public void openRankings() {
-        Intent intent = new Intent(this, TeamRankings.class);
-        startActivity(intent);
-    }
 
 }

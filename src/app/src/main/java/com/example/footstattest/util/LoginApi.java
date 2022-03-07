@@ -1,5 +1,6 @@
 package com.example.footstattest.util;
 
+// Helper API for logging in
 public class LoginApi {
 
     private String username;

@@ -17,6 +17,8 @@ import com.example.footstattest.models.ConvertedWinner;
 import java.util.List;
 import java.util.Objects;
 
+// An adapter like the listview adapter but recycler views feature extra functionality such as
+// updatable contents, database support and list item resource management
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
     private List<ConvertedWinner> winnerList;

@@ -20,18 +20,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LeagueViewModel leagueViewModel;
     private WinnerViewModel winnerViewModel;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private TextView textView;
-    private LiveData<List<ConvertedWinner>> winnerList;
-
 
     LeagueWinnerConverter winners = LeagueWinnerConverter.createWinners();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +36,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-//        Repository allLeagues = Repository.createLeagues();
-//        Log.d("LeagueRepo","onCreate: " + allLeagues.getLeagueList().get(0).getEmblemUrl());
-
-
-
         winnerViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(WinnerViewModel.class);
 
         winnerViewModel.getAllWinners().observe(this, winners -> {
@@ -57,14 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
             recyclerView.setAdapter(recyclerViewAdapter);
 
-
         });
-
-
-
-
-
-
 
 
     }

@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface LeagueDao {
 
-    // CRUD ops
+    // This data access object (DAO) enables us to perform our CRUD operations
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(League league);
 

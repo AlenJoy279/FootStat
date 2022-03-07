@@ -5,10 +5,18 @@ public class Team {
     private String name;
     private String crestUrl;
 
+    public Team(String name) {
+        this.name = name;
+    }
+
     public Team(Integer id, String name, String crestUrl){
         this.id = id;
         this.name = name;
         this.crestUrl = crestUrl;
+    }
+
+    public Team() {
+
     }
 
     public Integer getId() {

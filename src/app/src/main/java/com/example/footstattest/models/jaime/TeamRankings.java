@@ -1,8 +1,8 @@
 package com.example.footstattest.models.jaime;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import java.lang.Double;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import com.example.footstattest.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TeamRankings extends AppCompatActivity {
     List<Standing> dataList;
-
+    ArrayList<EloScore> eloArray= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +46,11 @@ public class TeamRankings extends AppCompatActivity {
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 MainResponse mainResponse = response.body();
 
-                //PutDataIntoRecyclerView(Arrays.asList(mainResponse.getStandings()));
-
-
                 dataList = new ArrayList(Arrays.asList(mainResponse.getStandings()));
 
                 dataList = mainResponse.getStandings();
 
                 int elo;
-
                 Hashtable<String, Double> rankings = new Hashtable<>();
 
 
@@ -67,27 +64,24 @@ public class TeamRankings extends AppCompatActivity {
 
                     rankings = EloCalculator.add_to_rankings(dataList.get(0).getTable().get(i).getTeam().getName(), elo);
 
-                    //txt.append("Rankings : " + rankings);
 
-                    // String team, int wins, int losses, int draws, int goalDifference, int playedGames
-                  /*  txt.append("ELO : "+ EloCalculator.calculateElo(dataList.get(0).getTable().get(i).getTeam().getName()
-                            , dataList.get(0).getTable().get(i).getWon(),
-                            dataList.get(0).getTable().get(i).getLost(),
-                            dataList.get(0).getTable().get(i).getDraw(),
-                            dataList.get(0).getTable().get(i).getGoalDifference(),
-                            dataList.get(0).getTable().get(i).getPlayedGames()
-                             ) + "\n"); */
-                   // txt.append("NAME : " + dataList.get(0).getTable().get(i).getTeam().getName() + "\n");
-                    //txt.append("POSITION : " + dataList.get(0).getTable().get(i).getPosition() + "\n");
                 }
 
 
                 //rankings = EloCalculator.sortValue(rankings);
                 for (String name: rankings.keySet()) {
-                    String key = name.toString();
-                    Double value =   rankings.get(name);
-                    txt.append("Team: " + key + "\nELO: " + value + "\n\n");
+
+                    EloScore score = new EloScore();
+                    score.setName(name.toString());
+                    score.setScore(rankings.get(name));
+                    eloArray.add(score);
+
                 }
+
+                eloArray.sort(Comparator.comparingDouble(EloScore::getScore));
+
+                for (int i = eloArray.size() - 1; i >= 0; i--)
+                    txt.append("Team: " + eloArray.get(i).getName() + "\nELO: " + eloArray.get(i).getScore() + "\n\n");
             }
 
             @Override
@@ -95,23 +89,6 @@ public class TeamRankings extends AppCompatActivity {
             }
         });
     }
-    public void openBundesliga() {
-        Intent intent = new Intent(this, BundesligaActivity.class);
-        startActivity(intent);
-    }
-    public void openLaLiga() {
-        Intent intent = new Intent(this, LaLigaActivity.class);
-        startActivity(intent);
-    }
 
-    public void openPremierLeague() {
-        Intent intent = new Intent(this, PremierLeagueActivity.class);
-        startActivity(intent);
-    }
-
-    public void openRankings() {
-        Intent intent = new Intent(this, TeamRankings.class);
-        startActivity(intent);
-    }
 
 }

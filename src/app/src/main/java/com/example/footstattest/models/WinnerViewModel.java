@@ -13,6 +13,8 @@ import java.util.List;
 
 public class WinnerViewModel extends AndroidViewModel {
 
+    // Creating an observable livedata ViewModel
+
     public static ConvertedWinnerRepository repository;
     public final LiveData<List<ConvertedWinner>> allWinners;
 

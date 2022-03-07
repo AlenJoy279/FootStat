@@ -16,5 +16,11 @@
     <string name="create_account">Create Account</string>
     <string name="read_text_file">Read Text File</string>
     <string name="username_hint">Username</string>
+    <string name="la_liga_title">LA LIGA</string>
+    <string name="loss">LOSS</string>
+    <string name="draw">DRAW</string>
+    <string name="win">WIN</string>
+    <string name="pos">POS</string>
+    <string name="team">TEAM</string>
 
 </resources>

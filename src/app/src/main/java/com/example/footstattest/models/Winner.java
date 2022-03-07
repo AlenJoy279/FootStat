@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.HashMap;
 import java.util.Map;
+
 public class Winner {
 
     @PrimaryKey(autoGenerate = true)

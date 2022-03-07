@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
+// This will be one of the entities in our leagues database
 @Entity(tableName = "league_table")
 public class League {
     

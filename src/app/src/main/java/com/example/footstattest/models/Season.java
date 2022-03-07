@@ -1,9 +1,5 @@
 package com.example.footstattest.models;
 
-import androidx.room.Entity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Season {

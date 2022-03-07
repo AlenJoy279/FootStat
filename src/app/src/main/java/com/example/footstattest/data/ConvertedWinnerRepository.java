@@ -12,6 +12,12 @@ import java.util.List;
 
 public class ConvertedWinnerRepository {
 
+    /* Wrapping our winner data into a LiveData list. LiveData allows us to present an
+    observer with data directly from the database. This will be updated automatically whenever
+    the database changes. Thanks to this, we can add views/filters to the database that a user
+    can access from the UI. "Sort by year" (not implemented) for example.
+     */
+
     private ConvertedWinnerDao winnerDao;
     private LiveData<List<ConvertedWinner>> allWinners;
 

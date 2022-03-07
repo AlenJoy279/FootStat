@@ -17,7 +17,7 @@ public interface APICall {
 
     //Call<MainResponse> @Path("api_key") String api_key;
     String BASE_URL = "https://mocki.io/";
-    @GET("v1/9a578563-28ae-4d31-9908-d930352cda95")
+    @GET("v1/ca624918-494b-49c3-a305-47bcc59d6fe8")
    // @Headers("X-Auth-Token : 93713de653e1499e8fff4ad3fe7fd9a4")
 
     Call<MainResponse> getData();

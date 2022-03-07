@@ -1,12 +1,12 @@
 package com.example.footstattest.util;
 
-import android.util.Log;
 
 import com.example.footstattest.data.Repository;
 import com.example.footstattest.models.ConvertedWinner;
 
 import java.util.ArrayList;
 
+// For conversion and storage of winners into a format that will be acceptable as input for the database
 public class LeagueWinnerConverter {
 
 

@@ -9,6 +9,11 @@ import androidx.room.PrimaryKey;
 import java.io.InputStream;
 import java.net.URL;
 
+/* Winner (and almost any other object we need to put in a database) needed to be converted before
+ it was possible to add them to the database. This was because SQLite can't parse objects having
+ another object as an attribute. This version inherits some props we want from winner + some props
+ from league.
+ */
 @Entity(tableName = "league_winner_table")
 public class ConvertedWinner extends Winner{
 
@@ -51,14 +56,17 @@ public class ConvertedWinner extends Winner{
         this.crest = crest;
     }
 
-    // Code to get crest icon from url.
+    // Code to get crest icon from url. Does not support SVG format images
     // Source: https://stackoverflow.com/questions/6407324/how-to-display-image-from-url-on-android
 
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "svg images");
-            return d;
+            if (!(url.endsWith("svg"))) {
+                InputStream is = (InputStream) new URL(url).getContent();
+                Drawable d = Drawable.createFromStream(is, "png image");
+                return d;
+            } else {
+                return null;}
         } catch (Exception e) {
             return null;
         }

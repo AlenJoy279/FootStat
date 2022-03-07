@@ -11,6 +11,7 @@ public class Table {
     private Integer goalsFor;
     private Integer goalsAgainst;
     private Integer goalDifference;
+    private String name;
 
     // Constructor
     public Table(Integer position, Team team, Integer playedGames, Integer won, Integer draw, Integer lost, Integer points, Integer goalsFor, Integer goalsAgainst, Integer goalDifference){
@@ -24,6 +25,36 @@ public class Table {
         this.goalsFor = goalsFor;
         this.goalsAgainst = goalsAgainst;
         this.goalDifference = goalDifference;
+    }
+
+    public Table(Integer position, Team team, Integer won, Integer draw, Integer lost) {
+    }
+
+    public Table(Integer position, Integer won, Integer draw, Integer lost) {
+        this.position = position;
+        this.won = won;
+        this.draw = draw;
+        this.lost = lost;
+    }
+
+    public Table(Integer position, Integer won, Integer draw, Integer lost, String name) {
+        this.position = position;
+        this.won = won;
+        this.draw = draw;
+        this.lost = lost;
+        this.name = name;
+    }
+
+    public Table() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     // Getters and Setters
