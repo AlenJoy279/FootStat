@@ -8,6 +8,7 @@ Instructions:
 
 * Upload your video walk through to Google Drive.
 * Under sharing, allow anyone with the link to view the video.
+* https://drive.google.com/drive/folders/1pV62uGA087R9VVkyb6tIaKrjMT8uf0NZ
 * Place a link to the video above, and uncomment those lines.
 * `git commit -a`, `git push`.
 * Using incognito mode on your browser, verify that the video is indeed accessible to anybody with the link.
