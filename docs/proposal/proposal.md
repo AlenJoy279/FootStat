@@ -7,14 +7,14 @@
 
 ## SECTION A
 
-|                     |                   |
-|---------------------|-------------------|
-|Project Title:       | xxxxxx            |
-|Student 1 Name:      | xxxxxx            |
-|Student 1 ID:        | xxxxxx            |
-|Student 2 Name:      | xxxxxx            |
-|Student 2 ID:        | xxxxxx            |
-|Project Supervisor:  | xxxxxx            |
+|                     |                      |
+|---------------------|----------------------|
+|Project Title:       | xxxxxx               |
+|Student 1 Name:      | Alen Tom Joy         |
+|Student 1 ID:        | 18313576             |
+|Student 2 Name:      | Jaime De Rivero Woods|
+|Student 2 ID:        | 19447494             |
+|Project Supervisor:  |  Renaat Verbrugger   |
 
 > Ensure that the Supervisor formally agrees to supervise your project; this is only recognised once the
 > Supervisor assigns herself/himself via the project Dashboard.
