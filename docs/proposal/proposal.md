@@ -5,10 +5,10 @@
 |                     |                      |
 |---------------------|----------------------|
 |Project Title:       | PandemicAnalysis     |
-|Student 1 Name:      | Alen Tom Joy         |
-|Student 1 ID:        | 18313576             |
-|Student 2 Name:      | Jaime De Rivero Woods|
-|Student 2 ID:        | 19447494             |
+|Student 1 Name:      | Jaime De Rivero Woods|
+|Student 1 ID:        | 19447494             |
+|Student 2 Name:      | Alen Tom Joy         |
+|Student 2 ID:        | 18313576             |
 |Project Supervisor:  | Renaat Verbruggen    |
 
 
