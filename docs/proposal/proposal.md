@@ -1,95 +1,69 @@
 # School of Computing &mdash; Year 4 Project Proposal Form
 
-> Edit (then commit and push) this document to complete your proposal form.
-> Make use of figures / diagrams where appropriate.
->
-> Do not rename this file.
-
 ## SECTION A
 
 |                     |                      |
 |---------------------|----------------------|
-|Project Title:       | xxxxxx               |
+|Project Title:       | PandemicAnalysis     |
 |Student 1 Name:      | Alen Tom Joy         |
 |Student 1 ID:        | 18313576             |
 |Student 2 Name:      | Jaime De Rivero Woods|
 |Student 2 ID:        | 19447494             |
-|Project Supervisor:  |  Renaat Verbrugger   |
+|Project Supervisor:  | Renaat Verbruggen    |
 
-> Ensure that the Supervisor formally agrees to supervise your project; this is only recognised once the
-> Supervisor assigns herself/himself via the project Dashboard.
->
-> Project proposals without an assigned
-> Supervisor will not be accepted for presentation to the Approval Panel.
 
 ## SECTION B
 
-> Guidance: This document is expected to be approximately 3 pages in length, but it can exceed this page limit.
-> It is also permissible to carry forward content from this proposal to your later documents (e.g. functional
-> specification) as appropriate.
->
-> Your proposal must include *at least* the following sections.
-
-
 ### Introduction
 
-> Describe the general area covered by the project.
+For our fourth year project, we plan to develop a web application that will perform NLP (Natural Language Processing) and sentiment analysis on a publically available Twitter dataset about the COVID-19 pandemic. The goal of the analysis is to evaluate the general public sentiment around this topic. The application will display the results of the analysis using word clouds and frequency charts, this will allow users to understand the data in a simple manner. We also plan to develop a historical analysis feature to display the sentiments on the topic over time, which will provide information about how the sentiments on this topic have changed.
 
 ### Outline
 
-> Outline the proposed project.
+The web application will use a publicly available dataset on the COVID-19 pandemic from Kaggle/GitHub that is maintained and updated periodically. We will perform Natural Language Processing and sentiment analysis on the tweets in the dataset to figure out how positive or negative the data is. In the web application, users will be able to either find the overall sentiment on the topic, or choose the overall sentiment on the topic at a specific moment in time. This historical analysis feature will perform sentiment analysis of past tweets, dating back all the way to (e.g. Feb 2020 when covid pandemic started). The historical analysis will allow users to view the sentiment of the tweets between user selectable dates by way of filters and sliders.
 
 ### Background
 
-> Where did the ideas come from?
+We teamed up for our third year project, and had an idea to perform sentiment analysis using the Twitter API on a topic. After some discussion we decided it was too complex for the third year project. This year, we went ahead with the idea, and met with Renaat Verbruggen to discuss how we would go about it. He recommended we focus on a public dataset for Twitter to perform NLP and sentiment analysis. We decided to focus on the COVID-19 pandemic as it has been a very relevant topic, and has affected the whole world. We also found it very interesting to perform an analysis of the overall sentiment, to gain further knowledge into how this topic has affected people.
 
 ### Achievements
 
-> What functions will the project provide? Who will the users be?
+The project will provide a data analysis platform, for those interested in the public perception and overall sentiment of tweets related to the pandemic, and how this changes over time. The users will be any person who has an interest in the topic and wants to gain further knowledge on how people have reacted to the news. In particular, the project could provide insights to government and healthcare professionals dealing with future pandemics. 
 
 ### Justification
 
-> Why/when/where/how will it be useful?
+This web application can be a useful tool for people who wish to gain knowledge on how this topic has affected people's sentiment, as it has impacted so many lives around the world. As this is a current topic, it can be useful in this moment, but it could also be used in the future, if someone wishes to gain insight into what the sentiments about the COVID-19 pandemic were at the time, and how they developed. We haven’t found apps or websites that perform this analysis, so we hope that the information we develop can be specifically useful to academics who might study this topic and use this information on how the news on this topic are perceived overall, how social media has displayed people’s sentiment of the topic, or how the sentiments of people on the topic have changed over time. As a more direct example, the data could be used to identify which strategies gained the most public support or had the least financial impacts to business owners.
 
 ### Programming language(s)
 
-> List the proposed language(s) to be used.
+We plan to use python’s Django framework and CSS for the webapp, Python and JQuery for the backend processing.
 
 ### Programming tools / Tech stack
 
-> Describe the compiler, database, web server, etc., and any other software tools you plan to use.
+We will use the Django framework to develop the web application. We will also use JavaScript to run the website. We will store and update datasets on a CentOS or Ubuntu server. Due to the large volumes of Twitter data that needs to be processed, we will use a NoSQL database (MongoDB/Cassandra) for better performance and flexibility. 
+
+For the NLP and sentiment analysis aspects, we will use Jupyter Notebook as well as various Python libraries such as padas, numpy, matplotlib etc. To clean our dataset, we will use the nltk toolkit and for tokenization, we plan to use a tool such as CountVectorizer. 
 
 ### Hardware
 
-> Describe any non-standard hardware components which will be required.
+N/A.
 
 ### Learning Challenges
 
-> List the main new things (technologies, languages, tools, etc) that you will have to learn.
+As part of the project, we will have to learn the theory behind NLP and sentiment analysis. This will include things such as generating a clean version of our dataset by removing punctuation and stopwords. We would also need to filter out retweets where relevant. Next, we would need to identify which tools and algorithms are best suited for tokenization in order to convert the data into a vector format.
+To achieve this, we will need to learn and gain experience with Python libraries such as pandas and numpy and software tools like Jupyter Notebook. 
+Once we obtain the tokenized version of all tweets, we would have to learn how to use the Bayes Theorem to train a Multinomial Naive Bayes classifier model.
+ We will then have to learn how to display the sentiment analysis data we have obtained in a useful and informative manner using the Django framework with our web application.
+We will also have to learn how to set up a server that locates, retrieves, updates and processes the required Twitter datasets. This may require the use of a basic CI/CD system if it is not possible to update the datasets in place.
 
 ### Breakdown of work
 
-> Clearly identify who will undertake which parts of the project.
->
-> It must be clear from the explanation of this breakdown of work both that each student is responsible for
-> separate, clearly-defined tasks, and that those responsibilities substantially cover all of the work required
-> for the project.
+#### Student 1 (Jaime de Vivero Woods)
 
-#### Student 1
+I will focus on the design of the website, including the different pages on the site and how they will communicate with the back end. I will also work on displaying the data we analyse as word clouds, charts or in another format which we may decide to use. 
+For the sentiment analysis which we will perform on the datasets, I will work alongside Alen to classify the data. I will also focus on cleaning the dataset and evaluating the performance of our model.
 
-> *Student 1 should complete this section.*
+#### Student 2 (Alen Joy)
 
-#### Student 2
-
-> *Student 2 should complete this section.*
-
-## Example
-
-> Example: Here's how you can include images in markdown documents...
-
-<!-- Basically, just use HTML! -->
-
-<p align="center">
-  <img src="./res/cat.png" width="300px">
-</p>
-
+I will focus on setting up the server and basic automation tasks. This includes implementing a method to fetch and update datasets, database handling, authorization (if necessary) and resource allocation and monitoring.
+With regard to sentiment analysis, I will be focusing on the tokenization and model training aspects.
