@@ -19,6 +19,9 @@ def index(request):
 
   get_files() # add all tweets from hydrated path to db
 
+  # use built-in DB functions to select tweets where the creation date include certain dates
+  # such as Tweet.objects.filter(id_text="11245...").first()
+
   return render(request, 'index.html', {'tweets' : tweets})
 
 def register(request):

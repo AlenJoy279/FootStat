@@ -1,7 +1,55 @@
 {% extends "base.html" %}
 {% block title %}PandemicAnalyser{% endblock %}
+    <style>
+background: white);
+    }
+    .slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 60px;
+    padding: 30px;
+    padding-left: 40px;
+    background: #fcfcfc;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 15px 40px #7E6D5766;
+    }
+    .slider label {
+    font-size: 24px;
+    font-weight: 400;
+    font-family: Open Sans;
+    padding-left: 10px;
+    color: black;
+    }
+    .slider input[type="range"] {
+    width: 420px;
+    height: 2px;
+    background: black;
+    border: none;
+    outline: none;
+    }
+
+    </style>
 {% block content %}
      <h1>PANDEMIC ANALYSER</h1>
+
+        <div class="slider">
+        <label for="fader">Date</label>
+        <input type="range" min="0" max="100" value="50" id="fader"
+        step="20" list="volsettings" >
+        <datalist id="volsettings">
+        <option>March 2020</option>
+        <option>April 2020</option>
+        <option>May 2020</option>
+        <option>June 2020</option>
+        <option>July 2020</option>
+        <option>August 2020</option>
+        </datalist>
+        </div>
 
         {% for t in tweets %} <!-- iterate over tweets and print them -->
         <div class="card" style="width: 20rem; float: left; margin: 27.5px;";>
@@ -11,8 +59,7 @@
           </div>
         </div>
     {% endfor %}
-     <div class="slidecontainer"> <!-- basic html slider - not attached to anything so has no use yet -->
-     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-     </div>
-
 {% endblock %}>
+
+
+
