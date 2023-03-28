@@ -8,11 +8,16 @@
           <div class="card-body">
              <h5 style="font-family: 'Century Schoolbook'" class="card-title">{{ t.id_str }}</h5>
              <p style="font-family:Times New Roman" class="card-text">{{ t.full_text }}</p>
+              <p style="font-family:Times New Roman" class="card-text">{{ t.created_at }}</p>
           </div>
         </div>
     {% endfor %}
      <div class="slidecontainer"> <!-- basic html slider - not attached to anything so has no use yet -->
      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
      </div>
+
+    {{ plot | safe }}
+    {{ piechart | safe }}
+    {{ barchart | safe }}
 
 {% endblock %}>

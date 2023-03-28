@@ -3,13 +3,13 @@ import os
 from PandemicAnalyser.models import Tweet
 
 seen = []
-abs_path = "C:/Users/Jaime/Documents/hydrated/April 2022" # Path containing the tweets - this path points to tweets in the month of april of 2020
+abs_path = "C:/Users/Jaime/Documents/hydrated/test" # Path containing the tweets - this path points to tweets in the month of april of 2020
 
 def get_files():
     # r = root, d = directories , f = files
     for r, d, f in os.walk(abs_path):
         for file in f: # iterate over every file
-            full_path = os.path.join(abs_path, file)
+            full_path = os.path.join(r, file)
             add_to_db(full_path) # add tweets from each file into the DB
 
 
