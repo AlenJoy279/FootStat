@@ -141,7 +141,7 @@ xtest = ["Great day of catching up with dear friends I haven\u2019t seen since b
 
 cl = NaiveBayesClassifier(train)
 
-print("\nOVERALL Naive Bayes Classifier ACCURACY: " + str(cl.accuracy(test)))
+print("\nOVERALL Naive Bayes Predictor ACCURACY: " + str(cl.accuracy(test)))
 
 # for s in xtest:
 #       blob = TextBlob(s)

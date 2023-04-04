@@ -113,7 +113,7 @@ test = [("Great day of catching up with dear friends I haven\u2019t seen since b
 #### DECISION TREE CLASSIFIER #####
 dtc = DecisionTreeClassifier(train2) # train decision tree algorithm using training data
 
-print("\nOVERALL Decision Tree Classifier ACCURACY: " + str(dtc.accuracy(test)) + "\n") # print accuracy using test set
+print("\nOVERALL Decision Tree Predictor ACCURACY: " + str(dtc.accuracy(test)) + "\n") # print accuracy using test set
 
 for s in test:
       blob = TextBlob(s[0])
