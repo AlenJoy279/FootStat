@@ -74,7 +74,8 @@ def models(request):
     dt_accuracy = get_dt_accuracy()
     km_accuracy = get_km_accuracy()
     knn_accuracy = get_knn_accuracy()
+    textblob_accuracy = get_builtinTextblob_accuracy()
 
-    bar = barchart_models(bayes_accuracy, dt_accuracy, km_accuracy, knn_accuracy)
+    bar = barchart_models(bayes_accuracy, dt_accuracy, km_accuracy, knn_accuracy, textblob_accuracy)
 
     return render(request, 'models.html',{'barchart': bar})

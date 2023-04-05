@@ -73,12 +73,6 @@ def get_polarity_by_month():
 
     return countDate
 
-
-    #     for day in month:
-    #         get polarity of day
-    #         add it to a dictionary
-    # return dictionary
-
     # 31 day months = January, March, May, July, August, October, and December
     # 30 day months = April, June, September, and November
     # 28 day month (except leap year = 29) = February

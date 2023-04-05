@@ -165,3 +165,19 @@ accuracy = correct / len(test)
 def get_nbc_accuracy(): # given a list of training data
         cl = NaiveBayesClassifier(train)
         return cl.accuracy(test)
+
+def get_builtinTextblob_accuracy():
+        correct = 0
+        for s in test:
+                blob = TextBlob(s[0])
+                if blob.sentiment.polarity < 0.0:
+                        score = 'neg'
+                else:
+                        score = 'pos'
+
+                if score == s[1]:
+                        correct += 1
+
+        accuracy = correct / len(test)
+
+        return accuracy
