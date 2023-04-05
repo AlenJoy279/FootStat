@@ -139,4 +139,3 @@ def get_all_daily_polarity():
             sentimentDate[key] = get_daily_polarity(key[0:3], key[4:8])
 
     return sentimentDate
-

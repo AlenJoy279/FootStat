@@ -5,6 +5,10 @@ from PandemicAnalyser.db.addition import *
 from PandemicAnalyser.Graphs.barchart import *
 from PandemicAnalyser.Graphs.lineplot import *
 from PandemicAnalyser.Graphs.piechart import *
+from PandemicAnalyser.Predictor.bayes import *
+from PandemicAnalyser.Predictor.decisiontree import *
+from PandemicAnalyser.Predictor.kmeans import *
+from PandemicAnalyser.Predictor.knn import *
 
 seen = []
 pol_calc = False
@@ -60,3 +64,17 @@ def index(request):
 
 def register(request):
  return HttpResponse("Hello from registration page")
+
+
+def daily(request):
+    return render(request, 'daily.html')
+
+def models(request):
+    bayes_accuracy = get_nbc_accuracy()
+    dt_accuracy = get_dt_accuracy()
+    km_accuracy = get_km_accuracy()
+    knn_accuracy = get_knn_accuracy()
+
+    bar = barchart_models(bayes_accuracy, dt_accuracy, km_accuracy, knn_accuracy)
+
+    return render(request, 'models.html',{'barchart': bar})

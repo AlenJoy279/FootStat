@@ -141,7 +141,7 @@ xtest = ["Great day of catching up with dear friends I haven\u2019t seen since b
 
 cl = NaiveBayesClassifier(train)
 
-print("\nOVERALL Naive Bayes Predictor ACCURACY: " + str(cl.accuracy(test)))
+#print("\nOVERALL Naive Bayes Predictor ACCURACY: " + str(cl.accuracy(test)))
 
 # for s in xtest:
 #       blob = TextBlob(s)
@@ -160,7 +160,8 @@ for s in test:
                 correct += 1
 
 accuracy = correct / len(test)
-print("\nOVERALL Built-in Polarity function ACCURACY: " + str(accuracy) + "\n")
+#print("\nOVERALL Built-in Polarity function ACCURACY: " + str(accuracy) + "\n")
 
-def get_classification(train,test ): # given a list of training data
-    pass
+def get_nbc_accuracy(): # given a list of training data
+        cl = NaiveBayesClassifier(train)
+        return cl.accuracy(test)

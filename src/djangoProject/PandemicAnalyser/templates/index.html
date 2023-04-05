@@ -18,10 +18,48 @@
     .slide-graph.active {
       display: block;
     }
+
+    .topnav {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .topnav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topnav li {
+      display: inline-block;
+      margin-right: 50px;
+    }
+
+    .topnav a {
+        font-size: 25px;
+      color: #333;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+        margin-right: 100px;
+    }
+
+    .topnav a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
   </style>
 </head>
 <body>
      <h1>PANDEMIC ANALYSER</h1>
+
+     <div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="/daily/">Daily</a>
+  <a href="/models/">Models</a>
+  <a href="#about">About</a>
+</div>
 {##}
 {#        {% for t in tweets %} <!-- iterate over tweets and print them -->#}
 {#        <div class="card" style="width: 20rem; float: left; margin: 27.5px;";>#}

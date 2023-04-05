@@ -23,3 +23,26 @@ def barchart_by_month(dict):
 
 
     return mpld3.fig_to_html(fig)
+
+
+def barchart_models(bayes, dt, km, knn):
+
+    labels = ['Naive Bayes Classifier', 'Decision Tree Classifier', 'K-means clustering', 'KNN clustering']
+    sizes = [bayes, dt, km, knn]
+
+    colors = np.random.rand(len(labels), 3)
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # Set the x-tick marks to the center of each bar
+    x_pos = np.arange(len(labels))
+    ax.bar(x_pos, sizes, color=colors)
+
+    # Set the x-tick labels at each bar
+    ax.set_xticklabels(["Naive Bayes Classifier", "Decision Tree Classifier", "K-means clustering", "KNN clustering"])
+    ax.set_xticks(x_pos)
+
+    ax.set_title("Sentiment Score by Model")
+    ax.set_xlabel("Model")
+    ax.set_ylabel("Sentiment Score")
+
+    return mpld3.fig_to_html(fig)
