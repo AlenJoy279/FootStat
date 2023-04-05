@@ -4,4 +4,5 @@ from django.contrib import admin
 from .models import * # Add this import
 
 admin.site.register(Tweet)
+admin.site.register(TweetPolarity)
 # admin.site.register(<Another Model>)

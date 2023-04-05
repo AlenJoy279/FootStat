@@ -8,6 +8,7 @@ class Summarised_Tweet(models.Model):
     full_text = models.CharField(max_length=280,null=True)
     geo = models.CharField(max_length=500, null=True)
 
+
 class Tweet(models.Model):
     created_at = models.CharField(max_length=200,null=True)
     id = models.IntegerField(primary_key=True)
@@ -32,3 +33,20 @@ class Tweet(models.Model):
     favorited = models.CharField(max_length=500,null=True)
     retweeted = models.CharField(max_length=500,null=True)
     lang = models.CharField(max_length=500,null=True)
+
+
+
+class TweetPolarity(models.Model):
+    id = models.IntegerField(primary_key=True)
+    created_at = models.CharField(max_length=200,null=True)
+    id_str = models.CharField(max_length=750, null=True)
+    full_text = models.CharField(max_length=280,null=True)
+    geo = models.CharField(max_length=500, null=True)
+    entities = models.CharField(max_length=500,null=True)
+    source = models.CharField(max_length=500,null=True)
+    retweet_count = models.CharField(max_length=500,null=True)
+    favorite_count = models.CharField(max_length=500,null=True)
+    favorited = models.CharField(max_length=500,null=True)
+    retweeted = models.CharField(max_length=500,null=True)
+    polarity = models.CharField(max_length=8, null=True)
+    user = models.CharField(max_length=500, null=True)
