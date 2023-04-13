@@ -6,7 +6,7 @@ from PandemicAnalyser.models import Tweet, TweetPolarity
 
 seen = []
 seen1 = []
-abs_path = "C:/Users/Jaime/Documents/hydrated/test" # Path containing the tweets - this path points to tweets in the month of april of 2020
+abs_path = "C:/Users/Jaime/Documents/hydrated/" # Path containing the tweets - this path points to tweets in the month of april of 2020
 
 def get_files():
     # r = root, d = directories , f = files
