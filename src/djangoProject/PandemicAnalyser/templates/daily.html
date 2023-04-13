@@ -2,9 +2,258 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Daily Sentiments of Tweets</title>
+    <title>Daily Sentiments of Tweets from March 2020 to December 2022</title>
+    <style>
+
+            .topnav {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .topnav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topnav li {
+      display: inline-block;
+      margin-right: 50px;
+    }
+
+    .topnav a {
+        font-size: 25px;
+      color: #333;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+        margin-right: 100px;
+    }
+
+    .topnav a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+
+            /* Style for the slider */
+    .slider {
+      width: 100%;
+    }
+
+    /* Style for the slide container */
+    .slide-graph {
+      display: none;
+    }
+
+    /* Style for the active slide container */
+    .slide-graph.active {
+      display: block;
+    }
+
+    </style>
 </head>
 <body>
+     <div class="topnav">
+  <a href="/">Home</a>
+  <a class="/active" href="#daily">Daily</a>
+  <a href="/keydates/">Key Dates</a>
+  <a href="/models/">Models</a>
+  <a href="#about">About</a>
+</div>
 <h1> Daily Sentiment Graphs</h1>
+
+<p> Use the slider to select lineplots from different months</p>
+     <h2> Lineplot with slider to view daily polarity by month from March 2020 to December 2022</h2>
+  <!-- Slider -->
+  <input type="range" min="1" max="33" value="1" class="slider" id="slider">
+
+  <!-- Slide containers -->
+
+  <div class="slide-graph" id="slide1">
+    <h2>Daily Sentiment for March 2020</h2>
+      {{ Mar2020 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide2">
+    <h2>Daily Sentiment for April 2020</h2>
+      {{ Apr2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide3">
+    <h2>Daily Sentiment for May 2020</h2>
+      {{ May2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide4">
+    <h2>Daily Sentiment for June 2020</h2>
+      {{ Jun2020 | safe }}
+  </div>
+
+     <div class="slide-graph active" id="slide5">
+    <h2>Daily Sentiment for July 2020</h2>
+      {{ Jul2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide6">
+    <h2>Daily Sentiment for August 2020</h2>
+      {{ Aug2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide7">
+    <h2>Daily Sentiment for September 2020</h2>
+      {{ Sep2020 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide8">
+    <h2>Daily Sentiment for October 2020</h2>
+      {{ Oct2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide9">
+    <h2>Daily Sentiment for November 2020</h2>
+      {{ Nov2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide10">
+    <h2>Daily Sentiment for December 2020</h2>
+      {{ Dec2020 | safe }}
+  </div>
+
+  <div class="slide-graph active" id="slide11">
+    <h2>Daily Sentiment for January 2021</h2>
+      {{ Jan2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide12">
+    <h2>Daily Sentiment for February 2021</h2>
+      {{ Feb2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide13">
+    <h2>Daily Sentiment for March 2021</h2>
+      {{ Mar2021 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide14">
+    <h2>Daily Sentiment for April 2021</h2>
+      {{ Apr2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide15">
+    <h2>Daily Sentiment for May 2021</h2>
+      {{ May2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide16">
+    <h2>Daily Sentiment for June 2021</h2>
+      {{ Jun2021 | safe }}
+  </div>
+
+     <div class="slide-graph active" id="slide17">
+    <h2>Daily Sentiment for July 2021</h2>
+      {{ Jul2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide18">
+    <h2>Daily Sentiment for August 2021</h2>
+      {{ Aug2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide19">
+    <h2>Daily Sentiment for September 2021</h2>
+      {{ Sep2021 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide20">
+    <h2>Daily Sentiment for October 2021</h2>
+      {{ Oct2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide21">
+    <h2>Daily Sentiment for November 2021</h2>
+      {{ Nov2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide22">
+    <h2>Daily Sentiment for December 2021</h2>
+      {{ Dec2021 | safe }}
+  </div>
+  <div class="slide-graph active" id="slide23">
+    <h2>Daily Sentiment for January 2022</h2>
+      {{ Jan2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide24">
+    <h2>Daily Sentiment for February 2022</h2>
+      {{ Feb2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide25">
+    <h2>Daily Sentiment for March 2022</h2>
+      {{ Mar2022 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide26">
+    <h2>Daily Sentiment for April 2022</h2>
+      {{ Apr2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide27">
+    <h2>Daily Sentiment for May 2022</h2>
+      {{ May2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide28">
+    <h2>Daily Sentiment for June 2022</h2>
+      {{ Jun2022 | safe }}
+  </div>
+
+     <div class="slide-graph active" id="slide29">
+    <h2>Daily Sentiment for July 2022</h2>
+      {{ Jul2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide30">
+    <h2>Daily Sentiment for August 2022</h2>
+      {{ Aug2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide31">
+    <h2>Daily Sentiment for September 2022</h2>
+      {{ Sep2022 | safe }}
+  </div>
+
+       <div class="slide-graph active" id="slide32">
+    <h2>Daily Sentiment for October 2022</h2>
+      {{ Oct2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide33">
+    <h2>Daily Sentiment for November 2022</h2>
+      {{ Nov2022 | safe }}
+  </div>  <div class="slide-graph" id="slide35">
+    <h2>Daily Sentiment for December 2022</h2>
+      {{ Dec2022 | safe }}
+  </div>
+  <script>
+    // Get the slider and slide containers
+    var slider = document.getElementById("slider");
+    var slideGraphs = document.querySelectorAll(".slide-graph");
+
+    // Add an event listener to the slider
+    slider.addEventListener("input", function() {
+      // Loop through the slide containers
+      for (var i = 0; i < slideGraphs.length; i++) {
+        // Remove the active class from all slide containers
+        slideGraphs[i].classList.remove("active");
+
+        // If the slider value matches the current slide container index, add the active class
+        if (i === slider.value - 1) {
+          slideGraphs[i].classList.add("active");
+        }
+      }
+    });
+  </script>
 </body>
 </html>

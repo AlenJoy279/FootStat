@@ -4,21 +4,6 @@
  <meta charset="UTF-8">
  <title>PandemicAnalyser</title>
       <style>
-    /* Style for the slider */
-    .slider {
-      width: 100%;
-    }
-
-    /* Style for the slide container */
-    .slide-graph {
-      display: none;
-    }
-
-    /* Style for the active slide container */
-    .slide-graph.active {
-      display: block;
-    }
-
     .topnav {
       background-color: #f0f0f0;
       padding: 10px;
@@ -52,14 +37,14 @@
   </style>
 </head>
 <body>
-     <h1>PANDEMIC ANALYSER</h1>
-
      <div class="topnav">
   <a class="active" href="#home">Home</a>
   <a href="/daily/">Daily</a>
+   <a href="/keydates/">Key Dates</a>
   <a href="/models/">Models</a>
   <a href="#about">About</a>
 </div>
+     <h1>PANDEMIC ANALYSER</h1>
 {##}
 {#        {% for t in tweets %} <!-- iterate over tweets and print them -->#}
 {#        <div class="card" style="width: 20rem; float: left; margin: 27.5px;";>#}
@@ -71,206 +56,15 @@
 {#        </div>#}
 {#    {% endfor %}#}
 {#     #}
-
-    {{ plot | safe }}gi
+<p>This page shows different statistics gathered from the results of the sentiment analysis.</p>
+     <p>The Daily page shows daily sentiment calculated from march 2020 to December 2022</p>
+     <p> The Models page shows the accuracy of all of the models that were tested for sentiment analysis</p>
+    {{ plot | safe }}
     {{ piechart | safe }}
+     <h2> Barchart for polarity by month from March 2020 to December 2022</h2>
     {{ barchart | safe }}
+     <h2> Lineplot for polarity by month from March 2020 to December 2022</h2>
     {{ lineplot | safe }}
-
-  <!-- Slider -->
-  <input type="range" min="1" max="35" value="1" class="slider" id="slider">
-
-  <!-- Slide containers -->
-  <div class="slide-graph" id="slide1">
-    <h2>Daily Sentiment for February 2020</h2>
-      {{ Feb2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide2">
-    <h2>Daily Sentiment for March 2020</h2>
-      {{ Mar2020 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide3">
-    <h2>Daily Sentiment for April 2020</h2>
-      {{ Apr2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide4">
-    <h2>Daily Sentiment for May 2020</h2>
-      {{ May2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide5">
-    <h2>Daily Sentiment for June 2020</h2>
-      {{ Jun2020 | safe }}
-  </div>
-
-     <div class="slide-graph active" id="slide6">
-    <h2>Daily Sentiment for July 2020</h2>
-      {{ Jul2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide7">
-    <h2>Daily Sentiment for August 2020</h2>
-      {{ Aug2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide8">
-    <h2>Daily Sentiment for September 2020</h2>
-      {{ Sep2020 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide9">
-    <h2>Daily Sentiment for October 2020</h2>
-      {{ Oct2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide10">
-    <h2>Daily Sentiment for November 2020</h2>
-      {{ Nov2020 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide11">
-    <h2>Daily Sentiment for December 2020</h2>
-      {{ Dec2020 | safe }}
-  </div>
-
-  <div class="slide-graph active" id="slide12">
-    <h2>Daily Sentiment for January 2021</h2>
-      {{ Jan2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide13">
-    <h2>Daily Sentiment for February 2021</h2>
-      {{ Feb2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide14">
-    <h2>Daily Sentiment for March 2021</h2>
-      {{ Mar2021 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide15">
-    <h2>Daily Sentiment for April 2021</h2>
-      {{ Apr2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide16">
-    <h2>Daily Sentiment for May 2021</h2>
-      {{ May2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide17">
-    <h2>Daily Sentiment for June 2021</h2>
-      {{ Jun2021 | safe }}
-  </div>
-
-     <div class="slide-graph active" id="slide18">
-    <h2>Daily Sentiment for July 2021</h2>
-      {{ Jul2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide19">
-    <h2>Daily Sentiment for August 2021</h2>
-      {{ Aug2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide20">
-    <h2>Daily Sentiment for September 2021</h2>
-      {{ Sep2021 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide21">
-    <h2>Daily Sentiment for October 2021</h2>
-      {{ Oct2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide22">
-    <h2>Daily Sentiment for November 2021</h2>
-      {{ Nov2021 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide23">
-    <h2>Daily Sentiment for December 2021</h2>
-      {{ Dec2021 | safe }}
-  </div>
-  <div class="slide-graph active" id="slide24">
-    <h2>Daily Sentiment for January 2022</h2>
-      {{ Jan2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide25">
-    <h2>Daily Sentiment for February 2022</h2>
-      {{ Feb2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide26">
-    <h2>Daily Sentiment for March 2022</h2>
-      {{ Mar2022 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide27">
-    <h2>Daily Sentiment for April 2022</h2>
-      {{ Apr2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide28">
-    <h2>Daily Sentiment for May 2022</h2>
-      {{ May2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide29">
-    <h2>Daily Sentiment for June 2022</h2>
-      {{ Jun2022 | safe }}
-  </div>
-
-     <div class="slide-graph active" id="slide30">
-    <h2>Daily Sentiment for July 2022</h2>
-      {{ Jul2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide31">
-    <h2>Daily Sentiment for August 2022</h2>
-      {{ Aug2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide32">
-    <h2>Daily Sentiment for September 2022</h2>
-      {{ Sep2022 | safe }}
-  </div>
-
-       <div class="slide-graph active" id="slide33">
-    <h2>Daily Sentiment for October 2022</h2>
-      {{ Oct2022 | safe }}
-  </div>
-
-  <div class="slide-graph" id="slide34">
-    <h2>Daily Sentiment for November 2022</h2>
-      {{ Nov2022 | safe }}
-  </div>  <div class="slide-graph" id="slide35">
-    <h2>Daily Sentiment for December 2022</h2>
-      {{ Dec2022 | safe }}
-  </div>
-  <script>
-    // Get the slider and slide containers
-    var slider = document.getElementById("slider");
-    var slideGraphs = document.querySelectorAll(".slide-graph");
-
-    // Add an event listener to the slider
-    slider.addEventListener("input", function() {
-      // Loop through the slide containers
-      for (var i = 0; i < slideGraphs.length; i++) {
-        // Remove the active class from all slide containers
-        slideGraphs[i].classList.remove("active");
-
-        // If the slider value matches the current slide container index, add the active class
-        if (i === slider.value - 1) {
-          slideGraphs[i].classList.add("active");
-        }
-      }
-    });
-  </script>
 
 </body>
 </html>
