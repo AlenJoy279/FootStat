@@ -27,7 +27,7 @@ def index(request):
 
   #selected_tweets = select_by_date(jsonl_to_json("C:/Users/Jaime/Documents/hydrated/test"), "Apr", "2022")
 
-  #get_files() # add all tweets from hydrated path to db
+  #get_files("C:/Users/Jaime/Documents/hydrated/") # add all tweets from hydrated path to db
   # Tweet.objects.all().delete()
   # TweetPolarity.objects.all().delete()
   if pol_calc == False:
