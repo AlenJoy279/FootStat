@@ -1,0 +1,53 @@
+
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #fig_el3288030296671679687034074761 {
+        /* set width and margin as per your requirement */
+        margin-right: 20px;
+    }
+</style>
+<div class="container">
+    <div id="fig_el3288030296671679687034074761"></div>
+</div>
+<script>
+function mpld3_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(mpld3) !== "undefined" && mpld3._mpld3IsLoaded){
+   // already loaded: just create the figure
+   !function(mpld3){
+       
+       mpld3.draw_figure("fig_el3288030296671679687034074761", {"width": 600.0, "height": 600.0, "axes": [{"bbox": [0.125, 0.10999999999999999, 0.775, 0.77], "xlim": [-1.5, 31.5], "ylim": [0.0309599664691047, 0.1402886928200763], "xdomain": [-1.5, 31.5], "ydomain": [0.0309599664691047, 0.1402886928200763], "xscale": "linear", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 31, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}, {"position": "left", "nticks": 8, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}], "axesbg": "#FFFFFF", "axesbgalpha": null, "zoomable": true, "id": "el328803029666096272", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el328803029667553584", "color": "#1F77B4", "linewidth": 1.5, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Day", "position": [0.5, -0.06337181337181337], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029666099056"}, {"text": "Sentiment Score", "position": [-0.09952210274790921, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029705799136"}, {"text": "Daily Sentiment Score during Dec of 2021", "position": [0.5, 1.018037518037518], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -0.0, "fontsize": 12.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029668387328"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[0.0, 0.12423106144697053], [1.0, 0.13439318930434122], [2.0, 0.12010880207159202], [3.0, 0.1223832243093607], [4.0, 0.0750987823528107], [5.0, 0.11761865407319952], [6.0, 0.11724497667068029], [7.0, 0.09645279773841355], [8.0, 0.07084655632587963], [9.0, 0.09074388667823008], [10.0, 0.08451158070551452], [11.0, 0.10864339633387254], [12.0, 0.0842432236324282], [13.0, 0.06445910350672257], [14.0, 0.1077969978254069], [15.0, 0.0665600156573095], [16.0, 0.044672105904388235], [17.0, 0.07044404894026707], [18.0, 0.10012681509991113], [19.0, 0.048886948494563535], [20.0, 0.08851533536831074], [21.0, 0.07958879356843672], [22.0, 0.07066228459568527], [23.0, 0.050927790054359094], [24.0, 0.13120643908078802], [25.0, 0.13005222885285064], [26.0, 0.10206813362563365], [27.0, 0.1025461586053189], [28.0, 0.08362942154317854], [29.0, 0.0359294540305125], [30.0, 0.1353192052586685]]}, "id": "el328803029667167968", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+   }(mpld3);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/mpld3
+   require.config({paths: {d3: "https://d3js.org/d3.v5"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.5.7.js", function(){
+         
+         mpld3.draw_figure("fig_el3288030296671679687034074761", {"width": 600.0, "height": 600.0, "axes": [{"bbox": [0.125, 0.10999999999999999, 0.775, 0.77], "xlim": [-1.5, 31.5], "ylim": [0.0309599664691047, 0.1402886928200763], "xdomain": [-1.5, 31.5], "ydomain": [0.0309599664691047, 0.1402886928200763], "xscale": "linear", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 31, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}, {"position": "left", "nticks": 8, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}], "axesbg": "#FFFFFF", "axesbgalpha": null, "zoomable": true, "id": "el328803029666096272", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el328803029667553584", "color": "#1F77B4", "linewidth": 1.5, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Day", "position": [0.5, -0.06337181337181337], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029666099056"}, {"text": "Sentiment Score", "position": [-0.09952210274790921, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029705799136"}, {"text": "Daily Sentiment Score during Dec of 2021", "position": [0.5, 1.018037518037518], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -0.0, "fontsize": 12.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029668387328"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[0.0, 0.12423106144697053], [1.0, 0.13439318930434122], [2.0, 0.12010880207159202], [3.0, 0.1223832243093607], [4.0, 0.0750987823528107], [5.0, 0.11761865407319952], [6.0, 0.11724497667068029], [7.0, 0.09645279773841355], [8.0, 0.07084655632587963], [9.0, 0.09074388667823008], [10.0, 0.08451158070551452], [11.0, 0.10864339633387254], [12.0, 0.0842432236324282], [13.0, 0.06445910350672257], [14.0, 0.1077969978254069], [15.0, 0.0665600156573095], [16.0, 0.044672105904388235], [17.0, 0.07044404894026707], [18.0, 0.10012681509991113], [19.0, 0.048886948494563535], [20.0, 0.08851533536831074], [21.0, 0.07958879356843672], [22.0, 0.07066228459568527], [23.0, 0.050927790054359094], [24.0, 0.13120643908078802], [25.0, 0.13005222885285064], [26.0, 0.10206813362563365], [27.0, 0.1025461586053189], [28.0, 0.08362942154317854], [29.0, 0.0359294540305125], [30.0, 0.1353192052586685]]}, "id": "el328803029667167968", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & mpld3
+    mpld3_load_lib("https://d3js.org/d3.v5.js", function(){
+         mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.5.7.js", function(){
+                 
+                 mpld3.draw_figure("fig_el3288030296671679687034074761", {"width": 600.0, "height": 600.0, "axes": [{"bbox": [0.125, 0.10999999999999999, 0.775, 0.77], "xlim": [-1.5, 31.5], "ylim": [0.0309599664691047, 0.1402886928200763], "xdomain": [-1.5, 31.5], "ydomain": [0.0309599664691047, 0.1402886928200763], "xscale": "linear", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 31, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}, {"position": "left", "nticks": 8, "tickvalues": null, "tickformat_formatter": "", "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": false}, "visible": true}], "axesbg": "#FFFFFF", "axesbgalpha": null, "zoomable": true, "id": "el328803029666096272", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el328803029667553584", "color": "#1F77B4", "linewidth": 1.5, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Day", "position": [0.5, -0.06337181337181337], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029666099056"}, {"text": "Sentiment Score", "position": [-0.09952210274790921, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 10.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029705799136"}, {"text": "Daily Sentiment Score during Dec of 2021", "position": [0.5, 1.018037518037518], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -0.0, "fontsize": 12.0, "color": "#000000", "alpha": 1, "zorder": 3, "id": "el328803029668387328"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[0.0, 0.12423106144697053], [1.0, 0.13439318930434122], [2.0, 0.12010880207159202], [3.0, 0.1223832243093607], [4.0, 0.0750987823528107], [5.0, 0.11761865407319952], [6.0, 0.11724497667068029], [7.0, 0.09645279773841355], [8.0, 0.07084655632587963], [9.0, 0.09074388667823008], [10.0, 0.08451158070551452], [11.0, 0.10864339633387254], [12.0, 0.0842432236324282], [13.0, 0.06445910350672257], [14.0, 0.1077969978254069], [15.0, 0.0665600156573095], [16.0, 0.044672105904388235], [17.0, 0.07044404894026707], [18.0, 0.10012681509991113], [19.0, 0.048886948494563535], [20.0, 0.08851533536831074], [21.0, 0.07958879356843672], [22.0, 0.07066228459568527], [23.0, 0.050927790054359094], [24.0, 0.13120643908078802], [25.0, 0.13005222885285064], [26.0, 0.10206813362563365], [27.0, 0.1025461586053189], [28.0, 0.08362942154317854], [29.0, 0.0359294540305125], [30.0, 0.1353192052586685]]}, "id": "el328803029667167968", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+            })
+         });
+}
+</script>
