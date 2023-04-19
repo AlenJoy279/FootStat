@@ -1,16 +1,16 @@
 from textblob import TextBlob
-
+from unittest.mock import patch
 from .decoder import *
 import os
 from PandemicAnalyser.models import Tweet, TweetPolarity
 
 seen = []
 seen1 = []
-abs_path = "C:/Users/Jaime/Documents/hydrated/" # Path containing the tweets - this path points to tweets in the month of april of 2020
+#abs_path = "C:/Users/Jaime/Documents/hydrated/" # Path containing the tweets - this path points to tweets in the month of april of 2020
 
-def get_files():
+def get_files(path):
     # r = root, d = directories , f = files
-    for r, d, f in os.walk(abs_path):
+    for r, d, f in os.walk(path):
         for file in f: # iterate over every file
             full_path = os.path.join(r, file)
             add_to_db(full_path) # add tweets from each file into the DB

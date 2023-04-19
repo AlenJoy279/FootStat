@@ -56,4 +56,9 @@ def barchart_models(bayes, dt, km, knn, txtblob):
     ax.set_xlabel("Model")
     ax.set_ylabel("Sentiment Score")
 
-    return mpld3.fig_to_html(fig)
+    html = mpld3.fig_to_html(fig)
+    # Add center alignment to the HTML code
+    centered_html = f'<div style="text-align: center">{html}</div>'
+
+
+    return centered_html
