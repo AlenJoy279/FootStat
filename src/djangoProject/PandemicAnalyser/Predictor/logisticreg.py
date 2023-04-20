@@ -4,6 +4,7 @@ import nltk
 import pandas as pd
 import numpy as np
 import string
+import json
 import seaborn as sns
 from matplotlib import pyplot as plt
 from textblob import TextBlob
@@ -108,67 +109,98 @@ def model_Evaluate(model):
     print(classification_report(y_test, y_pred))
     # Compute and plot the Confusion matrix
     cf_matrix = confusion_matrix(y_test, y_pred)
-    categories = ['Negative','Positive']
-    group_names = ['True Neg','False Pos', 'False Neg','True Pos']
+    categories = ['Negative', 'Positive']
+    group_names = ['True Neg', 'False Pos', 'False Neg', 'True Pos']
     group_percentages = ['{0:.2%}'.format(value) for value in cf_matrix.flatten() / np.sum(cf_matrix)]
-    labels = [f'{v1}n{v2}' for v1, v2 in zip(group_names,group_percentages)]
-    labels = np.asarray(labels).reshape(2,2)
-    sns.heatmap(cf_matrix, annot = labels, cmap = 'Blues',fmt = '',
-    xticklabels = categories, yticklabels = categories)
-    plt.xlabel("Predicted values", fontdict = {'size':14}, labelpad = 10)
-    plt.ylabel("Actual values" , fontdict = {'size':14}, labelpad = 10)
-    plt.title ("Confusion Matrix", fontdict = {'size':18}, pad = 20)
+    labels = [f'{v1}n{v2}' for v1, v2 in zip(group_names, group_percentages)]
+    labels = np.asarray(labels).reshape(2, 2)
+    sns.heatmap(cf_matrix, annot=labels, cmap='Blues', fmt='',
+                xticklabels=categories, yticklabels=categories)
+    plt.xlabel("Predicted values", fontdict={'size': 14}, labelpad=10)
+    plt.ylabel("Actual values", fontdict={'size': 14}, labelpad=10)
+    plt.title("Confusion Matrix", fontdict={'size': 18}, pad=20)
+    plt.show()
 
 
-tokenizer = RegexpTokenizer(r'\w+')
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    df_path = r"F:\ca400\hydrated\no_tag2020_april1_april2.csv.jsonl"
-    basename = df_path.split("\\")[-1]
-    tweet = create_df(df_path)
+    # Read in the train and test data as pandas frames
+    train_tweet = pd.read_json("train.json")
+    test_tweet = pd.read_json("test.json")
 
+    # Map pos labels to the integer 1 and neg labels to 0
+    train_tweet['label'] = train_tweet['label'].map({'pos': 1, 'neg': 0})
+    test_tweet['label'] = test_tweet['label'].map({'pos': 1, 'neg': 0})
 
-    tweet['polarity'] = tweet['full_text'].apply(get_sentiment_score)
-    tweet['sentiment'] = tweet['polarity'].apply(pos_neg)
-    data = tweet[['full_text', 'sentiment']]
-    data_pos = data[tweet['sentiment'] == 2]
-    data_neg = data[tweet['sentiment'] == 1]
-    dataset = pd.concat([data_pos, data_neg])
-    dataset['full_text'] = dataset['full_text'].str.lower()
-    # Data preprocessing steps
-    dataset['full_text'] = dataset['full_text'].apply(lambda text: cleaning_stopwords(text))
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: cleaning_punctuations(x))
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: cleaning_repeating_char(x))
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: cleaning_URLs(x))
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: cleaning_numbers(x))
-    dataset['full_text'] = dataset['full_text'].apply(tokenizer.tokenize)
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: stemming_on_text(x))
-    dataset['full_text'] = dataset['full_text'].apply(lambda x: lemmatizer_on_text(x))
-    dataset['full_text'].tail()
+    # Data pre-processing steps
+    # 1. Convert to lower case
+    train_tweet['text'] = train_tweet['text'].str.lower()
+    test_tweet['text'] = test_tweet['text'].str.lower()
+
+    unprocessed_train = train_tweet[['text', 'label']]
+    unprocessed_test = test_tweet[['text', 'label']]
+
+    # 2. Remove stopwords, urls, numbers, punctuations and repeating chars
+    train_tweet['text'] = train_tweet['text'].apply(lambda text: cleaning_stopwords(text))
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_punctuations(x))
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_repeating_char(x))
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_URLs(x))
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_numbers(x))
+
+    test_tweet['text'] = test_tweet['text'].apply(lambda text: cleaning_stopwords(text))
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_punctuations(x))
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_repeating_char(x))
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_URLs(x))
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_numbers(x))
+
+    # 3. Tokenization, stemming and lemmatization
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    train_tweet['text'] = train_tweet['text'].apply(tokenizer.tokenize)
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: stemming_on_text(x))
+    train_tweet['text'] = train_tweet['text'].apply(lambda x: lemmatizer_on_text(x))
+
+    test_tweet['text'] = test_tweet['text'].apply(tokenizer.tokenize)
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: stemming_on_text(x))
+    test_tweet['text'] = test_tweet['text'].apply(lambda x: lemmatizer_on_text(x))
+    print(train_tweet)
 
     # Plotting the distribution for dataset.
-    ax = dataset.groupby('sentiment').count().plot(kind='bar', title='Distribution of data', legend=False)
+    ax = train_tweet.groupby('label').count().plot(kind='bar', title='Distribution of training data', legend=False)
     ax.set_xticklabels(['Positive', 'Negative'], rotation=0)
+
     # Storing data in lists.
-    sns.countplot(x='sentiment', data=dataset)
+    sns.countplot(x='label', data=train_tweet)
+    text, label = list(train_tweet['text']), list(train_tweet['label'])
+    plt.show()
 
-    text, sentiment = list(dataset['full_text']), list(dataset['sentiment'])
-    print(dataset.dtypes)
+    # Train a TF-IDF vectorizer on the training data
+    vectorizer = TfidfVectorizer()
+    X_train = vectorizer.fit_transform(unprocessed_train['text'])
+    y_train = unprocessed_train['label']
 
-    X = data.full_text
-    y = data.sentiment
+    # Print the shape of the feature matrix and the label vector
+    print('Shape of feature matrix:', X_train.shape)
+    print('Shape of label vector:', y_train.shape)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=26105111)
-    vectoriser = TfidfVectorizer(ngram_range=(1, 2), max_features=500000)
-    vectoriser.fit(X_train)
-    X_train = vectoriser.transform(X_train)
-    X_test = vectoriser.transform(X_test)
-    print('No. of feature_words: ', len(vectoriser.get_feature_names_out()))
+    # Transform the test data into feature vectors using the trained vectorizer
+    X_test = vectorizer.transform(unprocessed_test['text'])
+    y_test = unprocessed_test['label']
 
-    LRmodel = LogisticRegression(C=2, max_iter=1000, n_jobs=-1)
+    print('No. of feature_words: ', len(vectorizer.get_feature_names_out()))
+
+    # Train an LR model using the training data
+    LRmodel = LogisticRegression()
     LRmodel.fit(X_train, y_train)
+
+    # Evaluate precision, recall and F-1 scores. Display confusion matrix.
     model_Evaluate(LRmodel)
-    y_pred3 = LRmodel.predict(X_test)
 
-    dataset.to_csv("result.csv", sep='\t')
+    y_pred = LRmodel.predict(X_test)
 
+    print(unprocessed_test['label'])
+    print(y_pred)
+
+    # Calculate the accuracy of the model on the test data
+    accuracy = (y_pred == y_test).mean()
+    print('Accuracy:', accuracy)
