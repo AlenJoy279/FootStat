@@ -38,7 +38,7 @@ def cleaning_stopwords(text):
                     'being', 'below', 'between', 'both', 'by', 'can', 'd', 'did', 'do',
                     'does', 'doing', 'down', 'during', 'each', 'few', 'for', 'from',
                     'further', 'had', 'has', 'have', 'having', 'he', 'her', 'here',
-                    'hers', 'herself', 'him', 'himself', 'his', 'how', 'i', 'if', 'in',
+                    'hers', 'herself', 'him', 'himself', 'his', 'how', 'i', 'im', 'if', 'in',
                     'into', 'is', 'it', 'its', 'itself', 'just', 'll', 'm', 'ma',
                     'me', 'more', 'most', 'my', 'myself', 'now', 'o', 'of', 'on', 'once',
                     'only', 'or', 'other', 'our', 'ours', 'ourselves', 'out', 'own', 're', 's', 'same', 'she', "shes",
@@ -124,6 +124,9 @@ def create_dfs_matrices():
     test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_URLs(x))
     test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_numbers(x))
 
+    processed_train = train_tweet[['text', 'label']]
+    processed_test = test_tweet[['text', 'label']]
+
     # 3. Tokenization, stemming and lemmatization
     tokenizer = RegexpTokenizer(r'\w+')
 
@@ -148,7 +151,31 @@ def create_dfs_matrices():
 
     xy_train_xy_test = [X_train, y_train, X_test, y_test]
 
-    return [train_tweet, test_tweet, xy_train_xy_test]
+    return [train_tweet, test_tweet, processed_train, processed_test, xy_train_xy_test]
+
+
+def get_wordmap():
+    test_data = create_dfs_matrices()[3]
+
+    data_pos = test_data[test_data['label'] == 1]
+    data_neg = test_data[test_data['label'] == 0]
+
+    neg_text = ' '.join(data_neg['text'].tolist())
+    pos_text = ' '.join(data_pos['text'].tolist())
+
+    # Negative wordcloud
+    plt.imshow(
+        WordCloud(width=800, height=800, background_color='white', max_words=100, colormap='Reds').generate(neg_text),
+        interpolation='bilinear')
+    plt.axis('off')
+    plt.show()
+    # Positive wordcloud
+    plt.imshow(
+        WordCloud(width=800, height=800, background_color='white', max_words=100, colormap='Reds').generate(pos_text),
+        interpolation='bilinear')
+    plt.axis('off')
+    plt.show()
+
 
 
 def convert_to_json(file, name):
@@ -226,71 +253,13 @@ def get_lr_accuracy():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # convert_to_json("train.txt", "train.json")
-    # convert_to_json("test.txt", "test.json")
 
-    # # Read in the train and test data as pandas frames
-    # train_tweet = pd.read_json("train.json")
-    # test_tweet = pd.read_json("test.json")
-    #
-    # # Map pos labels to the integer 1 and neg labels to 0
-    # train_tweet['label'] = train_tweet['label'].map({'pos': 1, 'neg': 0})
-    # test_tweet['label'] = test_tweet['label'].map({'pos': 1, 'neg': 0})
-    #
-    # # Data pre-processing steps (only required for graphs, word cloud etc.)
-    # # 1. Convert to lower case
-    # train_tweet['text'] = train_tweet['text'].str.lower()
-    # test_tweet['text'] = test_tweet['text'].str.lower()
-    #
-    # unprocessed_train = train_tweet[['text', 'label']]
-    # unprocessed_test = test_tweet[['text', 'label']]
-    #
-    # # 2. Remove stopwords, urls, numbers, punctuations and repeating chars
-    # train_tweet['text'] = train_tweet['text'].apply(lambda text: cleaning_stopwords(text))
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_punctuations(x))
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_repeating_char(x))
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_URLs(x))
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: cleaning_numbers(x))
-    #
-    # test_tweet['text'] = test_tweet['text'].apply(lambda text: cleaning_stopwords(text))
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_punctuations(x))
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_repeating_char(x))
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_URLs(x))
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: cleaning_numbers(x))
-    #
-    # # 3. Tokenization, stemming and lemmatization
-    # tokenizer = RegexpTokenizer(r'\w+')
-    #
-    # train_tweet['text'] = train_tweet['text'].apply(tokenizer.tokenize)
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: stemming_on_text(x))
-    # train_tweet['text'] = train_tweet['text'].apply(lambda x: lemmatizer_on_text(x))
-    #
-    # test_tweet['text'] = test_tweet['text'].apply(tokenizer.tokenize)
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: stemming_on_text(x))
-    # test_tweet['text'] = test_tweet['text'].apply(lambda x: lemmatizer_on_text(x))
-    #
-    # # Train a TF-IDF vectorizer on the training data
-    # vectorizer = TfidfVectorizer()
-    # X_train = vectorizer.fit_transform(unprocessed_train['text'])
-    # y_train = unprocessed_train['label']
-    #
-    # # Transform the test data into feature vectors using the trained vectorizer
-    # X_test = vectorizer.transform(unprocessed_test['text'])
-    # y_test = unprocessed_test['label']
-    #
-    # # Train an LR model using the training data
-    # LRmodel = pickle.load(open('LRmodel.sav', 'rb'))
-    # dataset_distro(train_tweet, "training")
-    # dataset_distro(test_tweet, "test")
-    #
-    # # Evaluate precision, recall and F-1 scores. Display confusion matrix.
-    # model_evaluate(LRmodel)
-    #
-    # # Calculate the accuracy of the model on the test data
-    # print(model_accuracy(LRmodel))
+    print()
 
-    get_dataset_distro()
-    get_lr_cm()
-    print(get_lr_accuracy())
+    # The below code will only work when you run the file on its own if you set the path for the LRmodel to
+    # 'LRmodel.sav' and the paths for the json as train.json, test.json.
 
-
+    # get_dataset_distro()
+    # get_lr_cm()
+    # print(get_lr_accuracy())
+    # get_wordmap()
