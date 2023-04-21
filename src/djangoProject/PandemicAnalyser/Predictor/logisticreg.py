@@ -102,6 +102,23 @@ def pos_neg(polarity):
         return 0
 
 
+def convert_to_json(file, name):
+    with open(file, 'r') as f:
+        data = eval(f.read())
+
+    # Convert the data to a list of dictionaries
+    data_list = []
+    for d in data:
+        data_list.append({"text": d[0], "label": d[1]})
+
+    # Serialize the data to JSON
+    json_data = json.dumps(data_list)
+
+    # Write the JSON data to a file
+    with open(name, 'w') as f:
+        f.write(json_data)
+
+
 def model_Evaluate(model):
     # Predict values for Test dataset
     y_pred = model.predict(X_test)
@@ -124,6 +141,7 @@ def model_Evaluate(model):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+
     # Read in the train and test data as pandas frames
     train_tweet = pd.read_json("train.json")
     test_tweet = pd.read_json("test.json")
