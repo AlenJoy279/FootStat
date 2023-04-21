@@ -32,8 +32,8 @@
   padding: 5px 10px;
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out;
-    margin-right: 135px;
-    margin-left: 135px;
+    margin-right: 75px;
+    margin-left: 75px;
 }
 
 .topnav a:hover {
@@ -63,13 +63,13 @@ h1 {
 h2 {
   font-size: 36px;
   font-weight: bold;
-  margin-top: 50px;
   margin-bottom: 30px;
+    margin-left: 250px ;
 }
 
 p {
   font-size: 18px;
-  margin-bottom: 30px;
+  margin-left: 250px ;
 }
 
   </style>
@@ -84,9 +84,37 @@ p {
 </div>
 
      <h1 class="text">MODEL DATA</h1>
+     <p class="text">
+         In this page, we show the different models we tested for sentiment analysis.
+         The respective accuracy of every model is shown as a bar chart, accuracy is shown in a 0-1 range.
+         There is also an explanation of every model and detailed stats of the linear regression model, including wordclouds and a confusion matrix.</p>
 <p class="text"> We tested a number of different model's accuracy. You can find below the total accuracy statistics graphed by model</p>
 
 {{ barchart | safe }}
+
+<h2> Naive Bayes Classifier</h2>
+<p>The Naive Bayes Classifier is a </p>
+<br>
+
+<h2> Decision Tree Classifier</h2>
+<p>The Decision Tree Classifier is a </p>
+<br>
+
+<h2> K-means Clustering</h2>
+<p>The K-means Clustering is a </p>
+<br>
+
+<h2> KNN Clustering</h2>
+<p>The KNN Clustering is a </p>
+<br>
+
+<h2> TextBlob's Built-in Polarity function </h2>
+<p>TextBlob's Built-in Polarity function is a </p>
+<br>
+
+<h2> Linear Regression </h2>
+<p>Linear Regression is a </p>
+<br>
 
 </body>
 
