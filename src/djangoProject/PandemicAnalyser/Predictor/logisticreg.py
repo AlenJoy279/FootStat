@@ -1,5 +1,5 @@
+import pickle
 import re
-
 import nltk
 import pandas as pd
 import numpy as np
@@ -15,31 +15,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import confusion_matrix, classification_report
 from wordcloud import WordCloud
 
-english_punctuations = string.punctuation
-punctuations_list = english_punctuations
+
 
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-stopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an',
-                'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'before',
-                'being', 'below', 'between', 'both', 'by', 'can', 'd', 'did', 'do',
-                'does', 'doing', 'down', 'during', 'each', 'few', 'for', 'from',
-                'further', 'had', 'has', 'have', 'having', 'he', 'her', 'here',
-                'hers', 'herself', 'him', 'himself', 'his', 'how', 'i', 'if', 'in',
-                'into', 'is', 'it', 'its', 'itself', 'just', 'll', 'm', 'ma',
-                'me', 'more', 'most', 'my', 'myself', 'now', 'o', 'of', 'on', 'once',
-                'only', 'or', 'other', 'our', 'ours', 'ourselves', 'out', 'own', 're', 's', 'same', 'she', "shes",
-                'should', "shouldve", 'so', 'some', 'such',
-                't', 'than', 'that', "thatll", 'the', 'their', 'theirs', 'them',
-                'themselves', 'then', 'there', 'these', 'they', 'this', 'those',
-                'through', 'to', 'too', 'under', 'until', 'up', 've', 'very', 'was',
-                'we', 'were', 'what', 'when', 'where', 'which', 'while', 'who', 'whom',
-                'why', 'will', 'with', 'won', 'y', 'you', "youd", "youll", "youre",
-                "youve", 'your', 'yours', 'yourself', 'yourselves']
 
 
 def create_df(path):
@@ -52,43 +33,49 @@ def get_sentiment_score(text):
     blob = TextBlob(text)
     return blob.sentiment.polarity
 
-
-STOPWORDS = set(stopwordlist)
-
-
 def cleaning_stopwords(text):
+    stopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an',
+                    'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'before',
+                    'being', 'below', 'between', 'both', 'by', 'can', 'd', 'did', 'do',
+                    'does', 'doing', 'down', 'during', 'each', 'few', 'for', 'from',
+                    'further', 'had', 'has', 'have', 'having', 'he', 'her', 'here',
+                    'hers', 'herself', 'him', 'himself', 'his', 'how', 'i', 'if', 'in',
+                    'into', 'is', 'it', 'its', 'itself', 'just', 'll', 'm', 'ma',
+                    'me', 'more', 'most', 'my', 'myself', 'now', 'o', 'of', 'on', 'once',
+                    'only', 'or', 'other', 'our', 'ours', 'ourselves', 'out', 'own', 're', 's', 'same', 'she', "shes",
+                    'should', "shouldve", 'so', 'some', 'such',
+                    't', 'than', 'that', "thatll", 'the', 'their', 'theirs', 'them',
+                    'themselves', 'then', 'there', 'these', 'they', 'this', 'those',
+                    'through', 'to', 'too', 'under', 'until', 'up', 've', 'very', 'was',
+                    'we', 'were', 'what', 'when', 'where', 'which', 'while', 'who', 'whom',
+                    'why', 'will', 'with', 'won', 'y', 'you', "youd", "youll", "youre",
+                    "youve", 'your', 'yours', 'yourself', 'yourselves']
+
+    STOPWORDS = set(stopwordlist)
     return " ".join([word for word in str(text).split() if word not in STOPWORDS])
 
-
 def cleaning_punctuations(text):
+    english_punctuations = string.punctuation
+    punctuations_list = english_punctuations
     translator = str.maketrans('', '', punctuations_list)
     return text.translate(translator)
-
 
 def cleaning_repeating_char(text):
     return re.sub(r'(.)1+', r'1', text)
 
-
 def cleaning_URLs(data):
     return re.sub('((www.[^s]+)|(https?://[^s]+))', ' ', data)
-
 
 def cleaning_numbers(data):
     return re.sub('[0-9]+', '', data)
 
-
-st = nltk.PorterStemmer()
-
-
 def stemming_on_text(data):
+    st = nltk.PorterStemmer()
     text = [st.stem(word) for word in data]
     return data
 
-
-lm = nltk.WordNetLemmatizer()
-
-
 def lemmatizer_on_text(data):
+    lm = nltk.WordNetLemmatizer()
     text = [lm.lemmatize(word) for word in data]
     return data
 
@@ -119,10 +106,27 @@ def convert_to_json(file, name):
         f.write(json_data)
 
 
-def model_Evaluate(model):
+def dataset_distro(df, title):
+    # Plotting the distribution for dataset.
+    ax = df.groupby('label').count().plot(kind='bar', title=f'Distribution of {title} data', legend=False)
+    ax.set_xticklabels(['Positive', 'Negative'], rotation=0)
+
+    # Storing data in lists.
+    sns.countplot(x='label', data=df)
+    text, label = list(train_tweet['text']), list(train_tweet['label'])
+
+    return plt.show()
+
+# def prep_dataset():
+#
+
+
+def model_evaluate(model):
     # Predict values for Test dataset
     y_pred = model.predict(X_test)
     # Print the evaluation metrics for the dataset.
+    print(unprocessed_test['label'])
+    print(y_pred)
     print(classification_report(y_test, y_pred))
     # Compute and plot the Confusion matrix
     cf_matrix = confusion_matrix(y_test, y_pred)
@@ -136,11 +140,20 @@ def model_Evaluate(model):
     plt.xlabel("Predicted values", fontdict={'size': 14}, labelpad=10)
     plt.ylabel("Actual values", fontdict={'size': 14}, labelpad=10)
     plt.title("Confusion Matrix", fontdict={'size': 18}, pad=20)
-    plt.show()
+
+    return plt.show()
+
+
+def model_accuracy(model):
+    y_pred = model.predict(X_test)
+
+    return classification_report(y_test, y_pred, output_dict=True)['accuracy']
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    # convert_to_json("train.txt", "train.json")
+    # convert_to_json("test.txt", "test.json")
 
     # Read in the train and test data as pandas frames
     train_tweet = pd.read_json("train.json")
@@ -150,7 +163,7 @@ if __name__ == '__main__':
     train_tweet['label'] = train_tweet['label'].map({'pos': 1, 'neg': 0})
     test_tweet['label'] = test_tweet['label'].map({'pos': 1, 'neg': 0})
 
-    # Data pre-processing steps
+    # Data pre-processing steps (only required for graphs, word cloud etc.)
     # 1. Convert to lower case
     train_tweet['text'] = train_tweet['text'].str.lower()
     test_tweet['text'] = test_tweet['text'].str.lower()
@@ -183,14 +196,7 @@ if __name__ == '__main__':
     test_tweet['text'] = test_tweet['text'].apply(lambda x: lemmatizer_on_text(x))
     print(train_tweet)
 
-    # Plotting the distribution for dataset.
-    ax = train_tweet.groupby('label').count().plot(kind='bar', title='Distribution of training data', legend=False)
-    ax.set_xticklabels(['Positive', 'Negative'], rotation=0)
 
-    # Storing data in lists.
-    sns.countplot(x='label', data=train_tweet)
-    text, label = list(train_tweet['text']), list(train_tweet['label'])
-    plt.show()
 
     # Train a TF-IDF vectorizer on the training data
     vectorizer = TfidfVectorizer()
@@ -211,14 +217,12 @@ if __name__ == '__main__':
     LRmodel = LogisticRegression()
     LRmodel.fit(X_train, y_train)
 
+    pickle.dump(LRmodel, open('LRmodel.sav', 'wb'))
+    dataset_distro(train_tweet, "training")
+    dataset_distro(test_tweet, "test")
+
     # Evaluate precision, recall and F-1 scores. Display confusion matrix.
-    model_Evaluate(LRmodel)
-
-    y_pred = LRmodel.predict(X_test)
-
-    print(unprocessed_test['label'])
-    print(y_pred)
+    model_evaluate(LRmodel)
 
     # Calculate the accuracy of the model on the test data
-    accuracy = (y_pred == y_test).mean()
-    print('Accuracy:', accuracy)
+    print(model_accuracy(LRmodel))
