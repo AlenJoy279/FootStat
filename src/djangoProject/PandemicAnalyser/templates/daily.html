@@ -32,8 +32,8 @@
   padding: 5px 10px;
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out;
-    margin-right: 135px;
-    margin-left: 135px;
+    margin-right: 75px;
+    margin-left: 75px;
 }
 
 .topnav a:hover {
@@ -67,6 +67,13 @@ h2 {
   margin-bottom: 30px;
 }
 
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
 p {
   font-size: 18px;
   margin-bottom: 30px;
@@ -84,6 +91,27 @@ p {
     .slide-graph.active {
       display: block;
     }
+
+    .tabledata{
+        width:1050px;
+        height:300px;
+        margin-left: 350px;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+    }
+    .tabledata th{
+        background-color: #f2f2f2;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    .tabledata td{
+        text-align: left;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
 
     </style>
 </head>
@@ -119,7 +147,7 @@ p {
   <div class="slide-graph" id="slide3">
     <h2 class="text">Daily Sentiment for May 2020</h2>
       {{ May2020 | safe }}
-  </div class="text">
+  </div>
 
   <div class="slide-graph" id="slide4">
     <h2 class="text">Daily Sentiment for June 2020</h2>
@@ -268,10 +296,90 @@ p {
   <div class="slide-graph" id="slide33">
     <h2 class="text">Daily Sentiment for November 2022</h2>
       {{ Nov2022 | safe }}
+  </div>
   </div>  <div class="slide-graph" id="slide35">
     <h2 class="text">Daily Sentiment for December 2022</h2>
       {{ Dec2022 | safe }}
   </div>
+
+     <h2 class="text" > Table data showing the largest changes in the sentiment calculated</h2>
+     <p class="text" >The changes are shown with related news articles and possible information which may explain the change.</p>
+
+ <table class = "tabledata">
+  <tr>
+    <th>Date</th>
+    <th>Change</th>
+    <th>Possible Reasoning</th>
+    <th>News Article</th>
+  </tr>
+
+  <tr>
+    <td>11/04/2020 - 14/04/2020</td>
+    <td><strong>45.01% decrease</strong> in sentiment over a 3 day span</td>
+    <td>A possible reason for this could be that on April 10th COVID-19 deaths passed 100,000.</td>
+    <td> This news articles shows the news on the 10th of April 2020:<br> <a href="https://www.theguardian.com/world/live/2020/apr/10/coronavirus-live-news-global-deaths-near-95000-as-boris-johnson-leaves-intensive-care">The Guardian Article</a></td>
+  </tr>
+
+     <tr>
+        <td>15/05/2020 - 17/05/2020</td>
+        <td><strong>34.42% decrease</strong> in sentiment over a 2 day span</td>
+        <td>A possible reason for this could be that on May 14th the total COVID-19 death toll passed 300,000.</td>
+        <td> This news articles shows the news on the 10th of April 2020: <br> <a href="https://www.wsj.com/articles/coronavirus-latest-news-05-14-2020-11589447546">Wall Street Journal Article</a></td>
+     </tr>
+
+     <tr>
+        <td>22/08/2020 - 25/08/2020</td>
+        <td><strong>36.61% decrease</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on November 25th the United States surpassed 12 million confirmed Covid-19 cases, with more than 250,000 deaths.</td>
+        <td> This news articles shows the news on the 25th of November 2020: <br><a href="https://www.nytimes.com/live/2020/11/20/world/covid-19-coronavirus">The New York Times Article</a></td>
+     </tr>
+
+     <tr>
+        <td>25/11/2020 - 28/11/2020</td>
+        <td><strong>31.74% decrease</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on August 22nd it was reported that the number of confirmed Covid-19 cases worldwide had surpassed 23 million, with over 800,000 deaths.</td>
+        <td> This news articles shows the news on the 22nd of August 2020: <br><a href="https://www.washingtonpost.com/business/on-small-business/global-deaths-pass-800000-cases-above-23-million-virus-update/2020/08/22/ae62a30c-e4c3-11ea-82d8-5e55d47e90ca_story.html">The Washington Post Article</a></td>
+     </tr>
+
+     <tr>
+        <td>16/04/2021 - 19/04/2021</td>
+        <td><strong>18.70% decrease</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on April 19th it marked the end of a week with 5.2 million cases reported, the highest rate since the pandemic started.</td>
+         <td> This news articles shows the news on the 19th of April 2021: <br><a href="https://edition.cnn.com/2021/04/20/europe/who-global-covid-cases-rise-intl/index.html">CNN Article</a></td>
+     </tr>
+
+     <tr>
+        <td>08/05/2021 - 11/05/2021</td>
+        <td><strong>27.14% decrease</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on May 11th a new coronavirus strain was first detected - the Delta variant first detected in India - was declared a "variant of concern".</td>
+        <td> This news articles shows the news on the 11th of May 2021: <br><a href="https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---11-may-2021">World Health Organisation Article</a></td>
+     </tr>
+
+     <tr>
+        <td>04/07/2021 - 07/07/2021</td>
+        <td><strong>28.70% decrease</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on July 7th it was confirmed that COVID-19 deaths around the world passed the 4 million milestone.</td>
+        <td> This news articles shows the news on the 8th of July 2021: <br><a href=https://www.nytimes.com/2021/07/08/world/covid-death-toll-four-million.html> The New York Times Article</a></td>
+     </tr>
+
+     <tr>
+        <td>23/08/2021 - 26/08/2021</td>
+        <td><strong>50.00% increase</strong> in sentiment over a 3 day span</td>
+        <td>A possible reason for this could be that on August 23rd it was confirmed that the U.S. Food and Drug Administration approved the first COVID-19 vaccine.</td>
+        <td> This news articles shows the news on the 23rd of August 2021: <br><a href="https://www.theguardian.com/us-news/2021/aug/22/pfizer-covid-vaccine-full-fda-approval-monday"> The Guardian Article</a></td>
+     </tr>
+
+          <tr>
+        <td>20/09/2021 - 22/09/2021</td>
+        <td><strong>38.29% increase</strong> in sentiment over a 2 day span</td>
+        <td>A possible reason for this could be that on September 21st it was announced that the United States planned to ease travel restrictions on all fully vaccinated foreign visitors starting in November 2021.</td>
+        <td> This news articles shows the news on the 23rd of August 2021: <br><a href="https://edition.cnn.com/2021/09/20/politics/biden-administration-international-travel-restrictions/index.html"> CNN Article</a></td>
+     </tr>
+
+</table>
+     <br>
+     <br>
+
   <script>
     // Get the slider and slide containers
     var slider = document.getElementById("slider");

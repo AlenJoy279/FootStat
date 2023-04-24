@@ -14,7 +14,7 @@ def lineplot_by_month(dict):
 
     ax.set_xticks(np.arange(len(labels)))
 
-    ax.set_xticklabels(["Feb 2020", "Mar 2020", "Apr 2020", "May 2020", "Jun 2020", "Jul 2020", "Aug 2020",
+    ax.set_xticklabels(["Mar 2020", "Apr 2020", "May 2020", "Jun 2020", "Jul 2020", "Aug 2020",
               "Sep 2020", "Oct 2020", "Nov 2020", "Dec 2020", "Jan 2021", "Feb 2021", "Mar 2021",
               "Apr 2021", "May 2021", "Jun 2021", "Jul 2021", "Aug 2021", "Sep 2021", "Oct 2021",
               "Nov 2021", "Dec 2021", "Jan 2022", "Feb 2022", "Mar 2022", "Apr 2022", "May 2022",
@@ -44,5 +44,5 @@ def lineplot_by_day(date, dic): # make a line plot for every day of the month
     ax.set_ylabel("Sentiment Score")
 
 
-    mpld3.save_html(fig, "Sentiments December 2022.html")
+    mpld3.save_html(fig, "Sentiments October 2021")
     return mpld3.fig_to_html(fig)
