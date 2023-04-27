@@ -5,10 +5,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pycountry as pycountry
 import matplotlib.colors as colors
-from matplotlib.colors import ListedColormap
 
 
 def combine_jsonl(path):
+    # Function to create a merged csv of monthly tweets for heatmap
     base = path
     files = os.listdir(path)
     df = pd.read_json(f'{base}/{files[0]}', lines=True, orient='records')
@@ -42,6 +42,7 @@ def combine_jsonl(path):
 
 
 def filter_country(row):
+    # Function to filter out any data in the "place" column that is not the name of the country
     row = str(row)
     # Match 'country' followed by a colon and zero or more spaces, followed by a single- or double-quoted string
     # containing the country name
@@ -64,18 +65,12 @@ def filter_country(row):
     return ""
 
 
-if __name__ == '__main__':
-    # all_dirs = os.listdir("F:/ca400/hydrated_monthly")
-    # print(all_dirs)
-    #
-    # for i in range(len(all_dirs)):
-    #     path = f'F:/ca400/hydrated_monthly/{all_dirs[i]}'
-    #     combine_jsonl(path)
-    # Should be 13866 lines in 2020_03
+def get_tweet_heatmap(path_to_csv):
 
-    df_path = "F:/ca400/hydrated_combined_monthly/2020_03.csv"
+    # Example use: get_tweet_heatmap("F:/ca400/hydrated_combined_monthly/2020_07.csv")
+    df_path = path_to_csv
     basename = df_path.split("/")[-1]
-    df = pd.read_csv("F:/ca400/hydrated_combined_monthly/2020_03.csv")
+    df = pd.read_csv(df_path)
     country_counts = df['place'].value_counts()
 
     # Replace country names to match with pycountry db
@@ -94,22 +89,14 @@ if __name__ == '__main__':
     country_counts = country_counts.rename({'Cape Verde': 'Cabo Verde'})
     country_counts = country_counts.rename({'Saint Martin': 'Saint Martin (French part)'})
 
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-        print(country_counts)
-
-    print(list(pycountry.countries))
-
     # Convert country names to iso_a3 format
     for country_name in country_counts.index:
         try:
             country = pycountry.countries.get(name=country_name)
-            print(country)
             if country is None:
                 country = pycountry.countries.get(common_name=country_name)
-                print(country)
                 if country is None:
                     country = pycountry.countries.get(official_name=country_name)
-                    print(country)
             iso_a3 = country.alpha_3
         except AttributeError:
             iso_a3 = 'Unknown'
@@ -128,18 +115,19 @@ if __name__ == '__main__':
     merged_data['place'].fillna(0, inplace=True)
 
     # Define the custom interval boundaries
-    interval_bounds = [1, 10, 50, 200, 400, 1000, 2000, 7000]
+    interval_bounds = [0, 1, 10, 50, 200, 400, 800, 1000, 1500, 2000, 4000, 8000, 15000, 20000]
 
     # Define the custom color map
-    custom_colors = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#084594']
+    custom_colors = ['#eaeaea', '#ffffff', '#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5',
+                     '#1b67a7', '#165993', '#115087', '#104994', '#084594']
     custom_cmap = colors.ListedColormap(custom_colors)
     custom_norm = colors.BoundaryNorm(interval_bounds, len(custom_colors))
 
     # Plot the choropleth map using the merged data with custom color scaling
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(14, 10))
     merged_data.plot(column='place', cmap=custom_cmap, norm=custom_norm, linewidth=0.8, edgecolor='0.8', ax=ax,
                      legend=True,
                      legend_kwds={'label': 'Monthly Tweet Frequency', 'orientation': 'horizontal'})
     ax.axis('off')
-    ax.set_title(f'Tweet Heatmap {basename.split(".")[0]}')
-    plt.show()
+    ax.set_title(f'{basename.split(".")[0]}')
+    return plt.show()
