@@ -70,6 +70,19 @@ p {
   margin-bottom: 30px;
 }
 
+    .slider {
+      width: 70%;
+        margin-left: 250px;
+        margin-right: 25px;
+    }
+
+    .slide-graph {
+      display: none;
+    }
+
+    .slide-graph.active {
+      display: block;
+    }
 
   </style>
 </head>
@@ -82,17 +95,7 @@ p {
   <a href="#about">About</a>
 </div>
      <h1 class="text">PANDEMIC ANALYSER</h1>
-{##}
-{#        {% for t in tweets %} <!-- iterate over tweets and print them -->#}
-{#        <div class="card" style="width: 20rem; float: left; margin: 27.5px;";>#}
-{#          <div class="card-body">#}
-{#             <h5 style="font-family: 'Century Schoolbook'" class="card-title">{{ t.id_str }}</h5>#}
-{#             <p style="font-family:Times New Roman" class="card-text">{{ t.full_text }}</p>#}
-{#              <p style="font-family:Times New Roman" class="card-text">{{ t.created_at }}</p>#}
-{#          </div>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#     #}
+
 <p class="text">This page shows different statistics gathered from the results of the sentiment analysis of a publicly available twitter dataset.</p>
      <p class="text">The Daily page shows daily sentiment calculated from march 2020 to December 2022</p>
      <p class="text"> The Models page shows the accuracy of all of the models that were tested for sentiment analysis<br><br></p>
@@ -103,6 +106,205 @@ p {
     {{ barchart | safe }}
      <h2 class="text"> Lineplot for polarity by month from March 2020 to December 2022</h2>
     {{ lineplot | safe }}
+
+
+<h1 class="text"> Monthly Heatmap </h1>
+
+<p class="text"> Use the slider to select heatmaps from different months</p>
+     <h2 class="text"> Heatmap with slider to view daily polarity by month from March 2020 to December 2022</h2>
+
+  <!-- Slider -->
+  <input type="range" min="1" max="33" value="1" class="slider" id="slider">
+
+  <!-- Slide containers -->
+
+  <div class="slide-graph active" id="slide1">
+    <h2 class="text">Heatmap for March 2020</h2>
+      {{ Mar2020 | safe }}
+  </div>
+
+       <div class="slide-graph " id="slide2">
+    <h2 class="text">Heatmap for April 2020</h2>
+      {{ Apr2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide3">
+    <h2 class="text">Heatmap for May 2020</h2>
+      {{ May2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide4">
+    <h2 class="text">Heatmap for June 2020</h2>
+      {{ Jun2020 | safe }}
+  </div>
+
+     <div class="slide-graph " id="slide5">
+    <h2 class="text">Heatmap for July 2020</h2>
+      {{ Jul2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide6">
+    <h2 class="text">Heatmap for August 2020</h2>
+      {{ Aug2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide7">
+    <h2 class="text">Heatmap for September 2020</h2>
+      {{ Sep2020 | safe }}
+  </div>
+
+       <div class="slide-graph" id="slide8">
+    <h2 class="text">Heatmap for October 2020</h2>
+      {{ Oct2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide9">
+    <h2 class="text">Heatmap for November 2020</h2>
+      {{ Nov2020 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide10">
+    <h2 class="text">Heatmap for December 2020</h2>
+      {{ Dec2020 | safe }}
+  </div>
+
+  <div class="slide-graph " id="slide11">
+    <h2 class="text">Heatmapfor January 2021</h2>
+      {{ Jan2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide12">
+    <h2 class="text">Heatmap for February 2021</h2>
+      {{ Feb2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide13">
+    <h2 class="text">Heatmap for March 2021</h2>
+      {{ Mar2021 | safe }}
+  </div>
+
+       <div class="slide-graph " id="slide14">
+    <h2 class="text">Heatmap for April 2021</h2>
+      {{ Apr2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide15">
+    <h2 class="text">Heatmap for May 2021</h2>
+      {{ May2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide16">
+    <h2 class="text">Heatmap for June 2021</h2>
+      {{ Jun2021 | safe }}
+  </div>
+
+     <div class="slide-graph " id="slide17">
+    <h2 class="text">Heatmap for July 2021</h2>
+      {{ Jul2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide18">
+    <h2 class="text">Heatmap for August 2021</h2>
+      {{ Aug2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide19">
+    <h2 class="text">Heatmap for September 2021</h2>
+      {{ Sep2021 | safe }}
+  </div>
+
+       <div class="slide-graph " id="slide20">
+    <h2 class="text">Heatmap for October 2021</h2>
+      {{ Oct2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide21">
+    <h2 class="text">Heatmap for November 2021</h2>
+      {{ Nov2021 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide22">
+    <h2 class="text">Heatmap for December 2021</h2>
+      {{ Dec2021 | safe }}
+  </div>
+  <div class="slide-graph " id="slide23">
+    <h2 class="text">Heatmap for January 2022</h2>
+      {{ Jan2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide24">
+    <h2 class="text">Heatmap for February 2022</h2>
+      {{ Feb2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide25">
+    <h2 class="text">Heatmap for March 2022</h2>
+      {{ Mar2022 | safe }}
+  </div>
+
+       <div class="slide-graph " id="slide26">
+    <h2 class="text">Heatmap for April 2022</h2>
+      {{ Apr2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide27">
+    <h2 class="text">Heatmap for May 2022</h2>
+      {{ May2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide28">
+    <h2 class="text">Heatmap for June 2022</h2>
+      {{ Jun2022 | safe }}
+  </div>
+
+     <div class="slide-graph " id="slide29">
+    <h2 class="text">Heatmap for July 2022</h2>
+      {{ Jul2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide30">
+    <h2 class="text">Heatmap for August 2022</h2>
+      {{ Aug2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide31">
+    <h2 class="text">Heatmap for September 2022</h2>
+      {{ Sep2022 | safe }}
+  </div>
+
+       <div class="slide-graph " id="slide32">
+    <h2 class="text">Heatmap for October 2022</h2>
+      {{ Oct2022 | safe }}
+  </div>
+
+  <div class="slide-graph" id="slide33">
+    <h2 class="text">Heatmap for November 2022</h2>
+      {{ Nov2022 | safe }}
+  </div>
+  </div>  <div class="slide-graph" id="slide35">
+    <h2 class="text">Heatmap for December 2022</h2>
+      {{ Dec2022 | safe }}
+  </div>
+
+  <script>
+    // Get the slider and slide containers
+    var slider = document.getElementById("slider");
+    var slideGraphs = document.querySelectorAll(".slide-graph");
+
+    // Add an event listener to the slider
+    slider.addEventListener("input", function() {
+      // Loop through the slide containers
+      for (var i = 0; i < slideGraphs.length; i++) {
+        // Remove the active class from all slide containers
+        slideGraphs[i].classList.remove("active");
+
+        // If the slider value matches the current slide container index, add the active class
+        if (i === slider.value - 1) {
+          slideGraphs[i].classList.add("active");
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>

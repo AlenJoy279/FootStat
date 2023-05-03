@@ -1,5 +1,7 @@
 import pickle
 import re
+
+import mpld3
 import nltk
 import pandas as pd
 import numpy as np
@@ -221,8 +223,8 @@ def get_lr_cm():
     # Predict values for Test dataset
     y_pred = model.predict(X_test)
     # Print the evaluation metrics for the dataset.
-    print(y_pred)
-    print(classification_report(y_test, y_pred))
+    #print(y_pred)
+    #print(classification_report(y_test, y_pred))
     # Compute and plot the Confusion matrix
     cf_matrix = confusion_matrix(y_test, y_pred)
     categories = ['Negative', 'Positive']
@@ -236,7 +238,11 @@ def get_lr_cm():
     plt.ylabel("Actual values", fontdict={'size': 14}, labelpad=10)
     plt.title("Confusion Matrix", fontdict={'size': 18}, pad=20)
 
-    return plt.show()
+    html = mpld3.fig_to_html(plt.gcf())
+    centered_html = f'<div style="text-align: center;">{html}</div>'
+
+
+    return centered_html
 
 
 def get_lr_accuracy():

@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 import os
+
+from PandemicAnalyser.Graphs.heatmap import get_tweet_heatmap, get_monthly_heatmap
 from PandemicAnalyser.Plots.searcher import *
 from PandemicAnalyser.Predictor.logisticreg import *
 #from PandemicAnalyser.Predictor.logisticreg import run_acc
@@ -18,24 +20,10 @@ seen = []
 pol_calc = False
 
 def index(request):
-  # check if new path added
-  # if new path - call function
-  tweets = []
-  #entries.delete()
 
-  #jsonl_path = "C:/Users/Jaime/Documents/hydrated/no_tag2020_august18_august19.csv.jsonl"
-
-  #add_to_db(jsonl_path) # the function contains checker - if path already been checked then do not add
-
-  #selected_tweets = select_by_date(jsonl_to_json("C:/Users/Jaime/Documents/hydrated/test"), "Apr", "2022")
-
-  #get_files("C:/Users/Jaime/Documents/hydrated/October 2021") # add all tweets from hydrated path to db
+  #get_files("C:/Users/Jaime/Documents/hydrated/") # add all tweets from hydrated path to db
   # Tweet.objects.all().delete()
   # TweetPolarity.objects.all().delete()
-  if pol_calc == False:
-    # calcualte the polarity and add to Tweet_polarity table in DB
-    # Use this table in functions to select values for website to improve speed of processes
-    pass
 
   #avgy = get_all_polarity()
   # for date, pol in avgy.items():
@@ -51,18 +39,29 @@ def index(request):
   #fig_barchart = barchart_by_month(avgy)
   #fig_lineplot = lineplot_by_month(avgy)
 
-
   # plots = []
   # all_pol = get_all_daily_polarity()
   # for date, daily_sentiment in all_pol.items():
-  #         if(date == "Oct 2021"):
-  #            plots.append(lineplot_by_day(date, daily_sentiment))
+  #           if(date == "Oct 2021"):
+  #              plots.append(lineplot_by_day(date, daily_sentiment))
 
   yplots = get_yearly_html_files("./PandemicAnalyser/templates/yearly")
 
+  hmaps = get_monthly_heatmap()
 
   return render(request, 'index.html', {#'plot': fig_plot, 'piechart':fig_piechart,
-                                        'barchart': yplots[0], 'lineplot': yplots[1],})
+                                        'barchart': yplots[0], 'lineplot': yplots[1],'Mar2020': hmaps["2020_03"], 'Apr2020': hmaps["2020_04"],
+                                        'May2020': hmaps["2020_05"], 'Jun2020': hmaps["2020_06"], 'Jul2020': hmaps["2020_07"],
+                                        "Aug2020": hmaps["2020_08"], "Sep2020": hmaps["2020_09"], "Oct2020": hmaps["2020_10"], "Nov2020": hmaps["2020_11"], "Dec2020": hmaps["2020_12"],
+                                        "Jan2021": hmaps["2021_01"],
+                                        "Feb2021": hmaps["2021_02"], "Mar2021": hmaps["2021_03"], "Apr2021": hmaps["2021_04"], "May2021": hmaps["2021_05"], "Jun2021": hmaps["2021_06"],
+                                        "Jul2021": hmaps["2021_07"],
+                                        "Aug2021": hmaps["2021_08"], "Sep2021": hmaps["2021_09"], "Oct2021": hmaps["2021_10"], "Nov2021": hmaps["2021_11"], "Dec2021": hmaps["2021_12"],
+                                        "Jan2022": hmaps["2022_01"],
+                                        "Feb2022": hmaps["2022_02"], "Mar2022": hmaps["2022_03"], "Apr2022": hmaps["2022_04"], "May2022": hmaps["2022_05"], "Jun2022": hmaps["2022_06"],
+                                        "Jul2022": hmaps["2022_07"],
+                                        "Aug2022": hmaps["2022_08"], "Sep2022": hmaps["2022_09"], "Oct2022": hmaps["2022_10"], "Nov2022": hmaps["2022_11"], "Dec2022": hmaps["2022_12"]
+  })
 
 def register(request):
  return HttpResponse("Hello from registration page")
@@ -99,9 +98,6 @@ def models(request):
     #run_lr = run_acc()
     #cm_html = run_lr[1]
 
-    #print("THE HTML IS:   \n" + str(cm_html))
-    #acclr =run_lr[0]
-    #print(acclr)
     confusion_matrix = get_lr_cm()
     #wordmap = get_wordmap()
 
@@ -131,11 +127,13 @@ def keydates(request):
     key_dates = get_polarity_by_keydate() # size = 12
     for k,v in key_dates.items():
         print(k + " : " + str(v))
+    # barchart for April 7 2020
+    bchart = barchart_keydates(list(key_dates.values())[0], 0.14, 0.1362, 0.132)
 
 
-    return render(request, 'key_dates.html',{"Apr072020": list(key_dates.values())[0], "Jun262020": list(key_dates.values())[1],
+    return render(request, 'key_dates.html',{"bchart": bchart, "Apr072020": list(key_dates.values())[0], "Jun262020": list(key_dates.values())[1],
         "Jul162020": list(key_dates.values())[2], "Aug022020": list(key_dates.values())[3],
          "Sep222020": list(key_dates.values())[4], "Oct022020": list(key_dates.values())[5], "Nov092020": list(key_dates.values())[6], "Nov232020": list(key_dates.values())[7],
          "Feb222021": list(key_dates.values())[8], "Aug232021": list(key_dates.values())[9], "Nov192021": list(key_dates.values())[10], "Nov262021": list(key_dates.values())[11],
-         "Jan312022": list(key_dates.values())[12], "Mar29 022": list(key_dates.values())[13]
+         "Jan312022": list(key_dates.values())[12], "Mar292022": list(key_dates.values())[13]
          })
