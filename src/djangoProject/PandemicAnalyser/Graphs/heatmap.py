@@ -134,6 +134,8 @@ def get_tweet_heatmap(path_to_csv):
 
     html = mpld3.fig_to_html(fig)
     centered_html = f'<div style="text-align: center;">{html}</div>'
+    # fname = path_to_csv[51:58] + ".html" # use this to parse file name from path
+    # mpld3.save_html(fig, fname) # use this to save file locally
 
     return centered_html
 

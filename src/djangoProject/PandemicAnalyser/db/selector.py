@@ -207,3 +207,18 @@ def get_polarity_by_keydate():
             total += float(t.polarity)
         keydates[date] = total / len(pols)
     return keydates
+
+def get_polarity_by_week(dates):
+    week_pol = 0
+    for d in dates:
+        pols = TweetPolarity.objects.filter(created_at__contains=d[0:10])
+        total = 0.0
+        for t in pols:
+            total += float(t.polarity)
+        week_pol = total / len(pols)
+
+    #print("POLARITY FOR WEEK OF DATE: " + str(dates[1]) + " " + str(week_pol / 7) + "\n")
+    #print("POLARITY FOR WEEK OF DATE: " + str(dates[1]) + " " + str(week_pol))
+    return week_pol
+
+
