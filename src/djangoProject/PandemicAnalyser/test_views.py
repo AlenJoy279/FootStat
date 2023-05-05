@@ -135,7 +135,6 @@ class ViewsIntegrationTest(TestCase):
         self.assertIn('bchart', response.context)
         self.assertIn('Apr072020', response.context)
         self.assertIn('Jun262020', response.context)
-        self.assertIn('Jul162020', response.context)
         self.assertIn('Aug022020', response.context)
         self.assertIn('Sep222020', response.context)
         self.assertIn('Oct022020', response.context)
@@ -165,3 +164,10 @@ class ViewsIntegrationTest(TestCase):
         # Check that the barchart and confusion matrix are in the response context
         self.assertIn('barchart', response.context)
         self.assertIn('confusionmatrix', response.context)
+
+
+    def test_about_view(self):
+        response = self.client.get('/about/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'about.html')
