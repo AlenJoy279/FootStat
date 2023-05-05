@@ -38,7 +38,7 @@ def barchart_by_month(dict):
 
 def barchart_models(bayes, dt, km, knn, lr, txtblob):
 
-    labels = ['Naive Bayes Classifier', 'Decision Tree Classifier', 'K-means clustering', 'KNN clustering', 'Linear Regression', 'TextBlob Classifier']
+    labels = ['Naive Bayes Classifier', 'Decision Tree Classifier', 'K-means clustering', 'KNN clustering', 'Logistic Regression', 'TextBlob Classifier']
     sizes = [bayes, dt, km, knn, lr, txtblob]
 
     colors = np.random.rand(len(labels), 3)
@@ -49,7 +49,7 @@ def barchart_models(bayes, dt, km, knn, lr, txtblob):
     ax.bar(x_pos, sizes, color=colors)
 
     # Set the x-tick labels at each bar
-    ax.set_xticklabels(["Naive Bayes Classifier", "Decision Tree Classifier", "K-means clustering", "KNN clustering", "Linear Regression", "TextBlob Classifier"])
+    ax.set_xticklabels(["Naive Bayes Classifier", "Decision Tree Classifier", "K-means clustering", "KNN clustering", "Logistic Regression", "TextBlob Classifier"])
     ax.set_xticks(x_pos)
 
     ax.set_title("Sentiment Score by Model")
