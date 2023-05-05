@@ -9,6 +9,7 @@ import string
 import json
 import seaborn as sns
 from matplotlib import pyplot as plt
+from sklearn.naive_bayes import BernoulliNB
 from textblob import TextBlob
 from nltk.tokenize import RegexpTokenizer
 from sklearn.linear_model import LogisticRegression
@@ -96,10 +97,14 @@ def pos_neg(polarity):
         return 0
 
 
-def create_dfs_matrices():
+def create_dfs_matrices(*args):
     # Read in the train and test data as pandas frames
-    train_tweet = pd.read_json('PandemicAnalyser/Predictor/train.json')
-    test_tweet = pd.read_json('PandemicAnalyser/Predictor/test.json')
+    if not args:
+        train_tweet = pd.read_json('PandemicAnalyser/Predictor/train.json')
+        test_tweet = pd.read_json('PandemicAnalyser/Predictor/test.json')
+    else:
+        train_tweet = pd.read_json(args[0])
+        test_tweet = pd.read_json(args[1])
 
     # Map pos labels to the integer 1 and neg labels to 0
     train_tweet['label'] = train_tweet['label'].map({'pos': 1, 'neg': 0})
@@ -210,8 +215,6 @@ def get_dataset_distro():
     return plt.show()
 
 
-# def prep_dataset():
-#
 
 
 def get_lr_cm():
@@ -245,6 +248,14 @@ def get_lr_cm():
     return centered_html
 
 
+def get_other_cms():
+    # xy_train_xy_test = [X_train, y_train, X_test, y_test]
+    matrices = create_dfs_matrices()[-1]
+    NBCmodel = BernoulliNB()
+    NBCmodel.fit(matrices[0], matrices[1])
+    y_pred = NBCmodel.predict(matrices[2])
+    print(classification_report(matrices[3], y_pred))
+
 def get_lr_accuracy():
     model = pickle.load(open('PandemicAnalyser/Predictor/LRmodel.sav', 'rb'))
 
@@ -269,3 +280,5 @@ if __name__ == '__main__':
     # get_lr_cm()
     # print(get_lr_accuracy())
     # get_wordmap()
+
+
