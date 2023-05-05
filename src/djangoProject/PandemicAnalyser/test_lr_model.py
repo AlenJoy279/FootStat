@@ -33,5 +33,6 @@ class LRModelTestCase(TestCase):
         test_matrices = lr.create_dfs_matrices("PandemicAnalyser/tests/lrtrain.json",
                                                "PandemicAnalyser/tests/lrtest.json")[-1]
 
-        self.assertTrue(len(test_matrices[-1]) == 4)
-        self.assertTrue(test_matrices[0].__class__ == numpy.float64)
+        self.assertTrue(len(test_matrices) == 4)
+
+

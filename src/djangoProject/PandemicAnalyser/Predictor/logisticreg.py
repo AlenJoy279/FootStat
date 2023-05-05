@@ -17,11 +17,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import confusion_matrix, classification_report
 from wordcloud import WordCloud
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import predictor_cm
 
 
 def create_df(path):
@@ -184,7 +180,6 @@ def get_wordmap():
     plt.show()
 
 
-
 def convert_to_json(file, name):
     with open(file, 'r') as f:
         data = eval(f.read())
@@ -215,8 +210,6 @@ def get_dataset_distro():
     return plt.show()
 
 
-
-
 def get_lr_cm():
     model = pickle.load(open('PandemicAnalyser/Predictor/LRmodel.sav', 'rb'))
     train_test_matrices = create_dfs_matrices()[-1]
@@ -226,8 +219,8 @@ def get_lr_cm():
     # Predict values for Test dataset
     y_pred = model.predict(X_test)
     # Print the evaluation metrics for the dataset.
-    #print(y_pred)
-    #print(classification_report(y_test, y_pred))
+    # print(y_pred)
+    # print(classification_report(y_test, y_pred))
     # Compute and plot the Confusion matrix
     cf_matrix = confusion_matrix(y_test, y_pred)
     categories = ['Negative', 'Positive']
@@ -244,17 +237,8 @@ def get_lr_cm():
     html = mpld3.fig_to_html(plt.gcf())
     centered_html = f'<div style="text-align: center;">{html}</div>'
 
-
     return centered_html
 
-
-def get_other_cms():
-    # xy_train_xy_test = [X_train, y_train, X_test, y_test]
-    matrices = create_dfs_matrices()[-1]
-    NBCmodel = BernoulliNB()
-    NBCmodel.fit(matrices[0], matrices[1])
-    y_pred = NBCmodel.predict(matrices[2])
-    print(classification_report(matrices[3], y_pred))
 
 def get_lr_accuracy():
     model = pickle.load(open('PandemicAnalyser/Predictor/LRmodel.sav', 'rb'))
@@ -266,19 +250,4 @@ def get_lr_accuracy():
     y_pred = model.predict(X_test)
 
     return classification_report(y_test, y_pred, output_dict=True)['accuracy']
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-
-    print()
-
-    # The below code will only work when you run the file on its own if you set the path for the LRmodel to
-    # 'LRmodel.sav' and the paths for the json as train.json, test.json.
-
-    # get_dataset_distro()
-    # get_lr_cm()
-    # print(get_lr_accuracy())
-    # get_wordmap()
-
 
