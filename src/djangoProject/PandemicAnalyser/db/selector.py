@@ -195,7 +195,7 @@ def get_all_daily_polarity(): # returns the daily polarities for every day of ev
 #get_daily_count("21", "March", "2020")
 
 def get_polarity_by_keydate():
-    keydates = { "Tue Apr 07 2020" : 0, "Fri Jun 26 2020": 0, "Thu Jul 16 2020": 0, "Sun Aug 02 2020": 0,
+    keydates = { "Tue Apr 07 2020" : 0, "Fri Jun 26 2020": 0, "Sun Aug 02 2020": 0,
                  "Tue Sep 22 2020": 0, "Fri Oct 02 2020": 0, "Mon Nov 09 2020":0, "Mon Nov 23 2020":0,
                  "Mon Feb 22 2021": 0, "Mon Aug 23 2021": 0, "Fri Nov 19 2021": 0, "Fri Nov 26 2021": 0,
                  "Mon Jan 31 2022": 0, "Tue Mar 29 2022": 0

@@ -17,6 +17,8 @@
 .topnav {
   background-color: #f0f0f0;
   padding: 20px 0;
+    display: flex;
+    justify-content: center
 }
 
 .topnav ul {
@@ -26,8 +28,7 @@
 }
 
 .topnav li {
-  display: inline-block;
-  margin-right: 100px;
+  margin-right: 50px;
 }
 
 .topnav a {
@@ -92,13 +93,15 @@ p {
   <a href="/daily/">Daily</a>
    <a href="/keydates/">Key Dates</a>
   <a href="/models/">Models</a>
-  <a href="#about">About</a>
+  <a href="/about/">About</a>
 </div>
      <h1 class="text">PANDEMIC ANALYSER</h1>
 
-<p class="text">This page shows different statistics gathered from the results of the sentiment analysis of a publicly available twitter dataset.</p>
-     <p class="text">The Daily page shows daily sentiment calculated from march 2020 to December 2022</p>
-     <p class="text"> The Models page shows the accuracy of all of the models that were tested for sentiment analysis<br><br></p>
+<p class="text">This page shows different statistics gathered from the results of the sentiment analysis of a publicly available Twitter dataset.</p>
+     <p class="text">The Daily page shows daily sentiment calculated from March 2020 to December 2022.</p>
+     <p class="text">The Key Dates page shows the sentiment at key dates and compares it to the sentiment the week, month, and year of the key date.</p>
+     <p class="text"> The Models page shows the accuracy of all the models that were tested for sentiment analysis.<br><br></p>
+     <p class="text">The About page shows information about the project and website.</p>
 
     {{ plot | safe }}
     {{ piechart | safe }}
