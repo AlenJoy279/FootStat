@@ -51,6 +51,8 @@ def get_model_cm(model_name):
     html = mpld3.fig_to_html(plt.gcf())
     centered_html = f'<div style="text-align: center;">{html}</div>'
 
+    mpld3.save_html(plt.gcf(), "confusion_matrix_" + model_name + ".html")
+
     return centered_html
 
 

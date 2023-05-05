@@ -47,3 +47,17 @@ def get_html_heatmap(directory):
                     html_code = f.read()
                     monthly_plots.append(html_code)
     return monthly_plots
+
+def get_html_confusion_matrix(directory):
+    dates = ["confusion_matrix_bayes.html","confusion_matrix_dtree.html"]
+
+    cm_plots = [] # add all monthly plots, these will be ordered chronologically
+
+    for date in dates:
+        for file in os.listdir(directory):
+            if file == date: # if file date is equal to the date being checked, then open file and copy its data
+                file_path = os.path.join(directory, file)
+                with open(file_path, "r") as f:
+                    html_code = f.read()
+                    cm_plots.append(html_code)
+    return cm_plots

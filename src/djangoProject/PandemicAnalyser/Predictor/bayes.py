@@ -70,7 +70,6 @@ accuracy = correct / len(test)
 
 def get_nbc_accuracy(): # given a list of training data
         cl = NaiveBayesClassifier(train)
-        print("NAIVE BAYES ACCURACY: " + str(cl.accuracy(test)))
         return cl.accuracy(test)
 
 def get_builtinTextblob_accuracy():

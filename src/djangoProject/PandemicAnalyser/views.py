@@ -5,6 +5,7 @@ import os
 from PandemicAnalyser.Graphs.heatmap import get_tweet_heatmap, get_monthly_heatmap
 from PandemicAnalyser.Plots.searcher import *
 from PandemicAnalyser.Predictor.logisticreg import *
+from PandemicAnalyser.Predictor.predictor_cm import get_model_cm, get_model_roc
 #from PandemicAnalyser.Predictor.logisticreg import run_acc
 from PandemicAnalyser.db.selector import *
 from PandemicAnalyser.db.addition import *
@@ -50,20 +51,7 @@ def index(request):
   #hmaps = get_monthly_heatmap() # - save html files locally to increase speed
   hmaps = get_html_heatmap("./PandemicAnalyser/templates/heatmaps")
 
-  return render(request, 'index.html', {#'plot': fig_plot, 'piechart':fig_piechart,
-                                        'barchart': yplots[0], 'lineplot': yplots[1],
-                                        # 'Mar2020': hmaps["2020_03"], 'Apr2020': hmaps["2020_04"],
-                                        # 'May2020': hmaps["2020_05"], 'Jun2020': hmaps["2020_06"], 'Jul2020': hmaps["2020_07"],
-                                        # "Aug2020": hmaps["2020_08"], "Sep2020": hmaps["2020_09"], "Oct2020": hmaps["2020_10"], "Nov2020": hmaps["2020_11"], "Dec2020": hmaps["2020_12"],
-                                        # "Jan2021": hmaps["2021_01"],
-                                        # "Feb2021": hmaps["2021_02"], "Mar2021": hmaps["2021_03"], "Apr2021": hmaps["2021_04"], "May2021": hmaps["2021_05"], "Jun2021": hmaps["2021_06"],
-                                        # "Jul2021": hmaps["2021_07"],
-                                        # "Aug2021": hmaps["2021_08"], "Sep2021": hmaps["2021_09"], "Oct2021": hmaps["2021_10"], "Nov2021": hmaps["2021_11"], "Dec2021": hmaps["2021_12"],
-                                        # "Jan2022": hmaps["2022_01"],
-                                        # "Feb2022": hmaps["2022_02"], "Mar2022": hmaps["2022_03"], "Apr2022": hmaps["2022_04"], "May2022": hmaps["2022_05"], "Jun2022": hmaps["2022_06"],
-                                        # "Jul2022": hmaps["2022_07"],
-                                        # "Aug2022": hmaps["2022_08"], "Sep2022": hmaps["2022_09"], "Oct2022": hmaps["2022_10"], "Nov2022": hmaps["2022_11"], "Dec2022": hmaps["2022_12"]
-                                      'Mar2020': hmaps[0], 'Apr2020': hmaps[1],
+  return render(request, 'index.html', {'barchart': yplots[0], 'lineplot': yplots[1],'Mar2020': hmaps[0], 'Apr2020': hmaps[1],
                                       'May2020': hmaps[2], 'Jun2020': hmaps[3], 'Jul2020': hmaps[4],
                                       "Aug2020": hmaps[5], "Sep2020": hmaps[6], "Oct2020": hmaps[7], "Nov2020": hmaps[8], "Dec2020": hmaps[9],
                                       "Jan2021": hmaps[10],
@@ -113,13 +101,18 @@ def models(request):
     linearRegression_accuracy = 0.85
     bar = barchart_models(nb_accuracy, dt_accuracy, km_accuracy, knn_accuracy, linearRegression_accuracy, textblob_accuracy)
 
-    #run_lr = run_acc()
-    #cm_html = run_lr[1]
+    lr_cm =  get_lr_cm() # Linear Regression Confusion Matrix
 
-    confusion_matrix = get_lr_cm()
-    #wordmap = get_wordmap()
+    bayes_cm = get_html_confusion_matrix("./PandemicAnalyser/templates/confusionmatrix")[0]
+    dt_cm = get_html_confusion_matrix("./PandemicAnalyser/templates/confusionmatrix")[1]
 
-    return render(request, 'models.html', {'barchart': bar, 'confusionmatrix': confusion_matrix})#, 'wordmap':wordmap})
+    lr_roc = get_model_roc("lr")
+    bayes_roc = get_model_roc("bayes")
+    dt_roc = get_model_roc("dtree")
+
+
+
+    return render(request, 'models.html', {'barchart': bar, 'bayescm': bayes_cm, 'dtcm': dt_cm, 'confusionmatrix': lr_cm, 'lrroc':lr_roc, 'bayesroc':bayes_roc,'dtroc':dt_roc})#, 'wordmap':wordmap})
 
 def keydates(request):
     #key_dates = get_polarity_by_keydate()
