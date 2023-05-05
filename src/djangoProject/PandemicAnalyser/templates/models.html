@@ -12,6 +12,8 @@
 .topnav {
   background-color: #f0f0f0;
   padding: 20px 0;
+    display: flex;
+    justify-content: center
 }
 
 .topnav ul {
@@ -21,7 +23,6 @@
 }
 
 .topnav li {
-  display: inline-block;
   margin-right: 50px;
 }
 
@@ -40,6 +41,7 @@
   background-color: #333;
   color: #D3D3D3;
 }
+
 
 body {
     background: linear-gradient(to right, lightgrey 0%, lightgrey 12.5%, white 12.5%, white 87.5%, lightgrey 87.5%, lightgrey 100%);
@@ -70,6 +72,12 @@ h2 {
 p {
   font-size: 18px;
   margin-left: 250px ;
+  margin-right: 250px ;
+}
+
+img{
+    margin-right: 200px;
+    margin-left: 500px;
 }
 
   </style>
@@ -80,45 +88,85 @@ p {
   <a href="/daily/">Daily</a>
   <a href="/keydates/">Key Dates</a>
   <a class="active" href="#models">Models</a>
-  <a href="#about">About</a>
+  <a href="/about/">About</a>
 </div>
 
      <h1 class="text">MODEL DATA</h1>
      <p class="text">
-         In this page, we show the different models we tested for sentiment analysis.
-         The respective accuracy of every model is shown as a bar chart, accuracy is shown in a 0-1 range.
-         There is also an explanation of every model and detailed stats of the linear regression model, including wordclouds and a confusion matrix.</p>
-<p class="text"> We tested a number of different model's accuracy. You can find below the total accuracy statistics graphed by model</p>
+         On this page we show the different models we tested for sentiment analysis.
+         The respective accuracy of every model is shown as a bar chart and the accuracy is shown in a -1 to 1 range.
+         There is also an explanation of every model and detailed stats of the linear regression model, including a confusion matrix.</p>
+<p class="text"> We tested the accuracy of a number of different models. Below is shown the total accuracy statistics graphed by model.</p>
 
 {{ barchart | safe }}
-
+<div>
 <h2> Naive Bayes Classifier</h2>
-<p>The Naive Bayes Classifier is a </p>
-<br>
+    <p>Classification is where a model or classifier is constructed to predict categorical labels. It is the process of learning a model that can differentiate between different classes of data.
+    Naïve Bayes is a classifier method that applies Bayes’ Theorem with the assumption that the predictors used are independent. Bayes’ Theorem uses conditional probabilities among predictors to determine the probability of a class variable occurring, given that another variable has already taken place.
+    </p>
+         <img src="https://miro.medium.com/v2/resize:fit:1400/1*LB-G6WBuswEfpg20FMighA.png" alt="Bayes Theorem">
+    <br>
+         <p>We utilized the Text Blob library to develop a Naïve Bayes Classifier. We generated a set of training and test data and refined it to achieve the highest levels of accuracy. Our final results demonstrated an overall accuracy rate of <b>81.4%</b>.</p>
+</div>
+     <br>
+<div>
+    <h2> Decision Tree Classifier</h2>
+    <p>A decision tree is a tree-like structure where each internal node (non-leaf node) represents a test on an attribute, each branch represents a possible outcome of the test, and each leaf node (or terminal node) holds a class label. Decision tree induction is the process of learning decision trees from training tuples that have class labels assigned to them.
+        <br><br>
+        <img src="https://jeremykun.com/wp-content/uploads/2012/09/tree.png" alt="Diagram of Decision Tree">
+<br><br>
+        To classify data, decision trees use the Top-Down Induction of Decision Trees method. This method generates decision rules in the form of a decision tree. Decision trees are constructed by recursively partitioning the values of attributes.
+        <br><br>
+We used Text Blob’s library to build a Decision Tree Classifier. We developed a set of training and test data which was refined to produce the highest levels of accuracy. Our final results showed an overall accuracy of <b>77%</b>.
+</p>
+    <br>
+</div>
 
-<h2> Decision Tree Classifier</h2>
-<p>The Decision Tree Classifier is a </p>
-<br>
+<div>
+    <h2> K-means Clustering</h2>
+    <p>Clustering is concerned with grouping together objects that are similar to each other and dissimilar to the objects belonging to other clusters.
+    <br><br>
+            K-means Clustering operates on a dissimilarity matrix, which is an object-by-object structure that stores a collection of proximities for all pairs of n objects. It is represented by an n-by-n table. The dissimilarity (or similarity) between the objects is computed based on the distance between each pair of objects. This is measured through Euclidean Distance.
+    <br><br>
+        In the case of K-means, the algorithm operates on a dissimilarity matrix, which is a table storing pairwise proximities between objects. The dissimilarity (or similarity) between objects is calculated using Euclidean Distance. Each object in K-Means clustering is assigned to one of the clusters in a set, where the number of clusters k is predefined. Initially, k points are chosen as centroids to represent the clusters. Objects are then assigned to the cluster with the nearest centroid, and the centroids are recalculated based on the assigned objects. This process iterates recursively until the centroids no longer move.
+    <br><br>
+        <img src="https://res.cloudinary.com/dyd911kmh/image/upload/v1678462092/image7_a1777d39aa.png" alt="K-Means clustering" width="750" height="500">
+        <br><br>
+        We built a K-means clustering model using scikit-learn, a machine learning library. We developed a set of training and test data which was refined to produce the highest levels of accuracy. Our final results showed an overall accuracy of <b>51.8%</b>. The recorded accuracy was so low because clustering models such as these are not suitable for our type of dichotomous data. In K-means, when the value of k is the same as the number of objects each object forms its own cluster of one, resulting in poor results.
+</p>
+    <br>
+</div>
 
-<h2> K-means Clustering</h2>
-<p>The K-means Clustering is a </p>
-<br>
+<div>
+    <h2> KNN Clustering</h2>
+    <p>KNN is primarily considered a classification model rather than a clustering algorithm, as its main purpose is to assign class labels to unlabelled instances based on the class labels of their nearest neighbors. KNN estimates the classification of an unseen instance by finding the k closest training instances and selecting the most commonly occurring classification among them. Similar to K-means, it uses proximity and similarity measures, such as Euclidean Distance, to determine the nearest neighbors.
+    <br><br>
+        <img src="https://static.javatpoint.com/tutorial/machine-learning/images/k-nearest-neighbor-algorithm-for-machine-learning2.png" alt="KNN">
+        <br><br>
+        We built a KNN model using scikit-learn. We developed a set of training and test data which was refined to produce the highest levels of accuracy. Our final results showed an overall accuracy of <b>64.5%</b>. The recorded accuracy was lower than other models because the data used is dichotomous, this means that on each step where the Euclidean distance has to be measured in order to choose which cluster an object belongs to, it will often result in many objects having the same value and each object will be assigned to a cluster by random.
+</p>
+    <br>
+</div>
 
-<h2> KNN Clustering</h2>
-<p>The KNN Clustering is a </p>
-<br>
+<div>
+    <h2> Textblob's Built-in Polarity function </h2>
+    <p>The Textblob library is a popular Python library that provides a wide range of natural language processing (NLP) functionalities, including sentiment analysis. One of the most commonly used functions in Textblob is the polarity function, which is used to determine the overall sentiment of a piece of text. The polarity function, when provided with a text input, generates a sentiment score ranging from -1 to 1. In this range a value of -1 indicates a highly negative sentiment, while a value of 1 signifies an extremely positive sentiment.
+    <br><br>
+        This polarity function operates by leveraging natural language processing techniques and a pre-trained sentiment analysis model. It considers various linguistic features, such as word choice, context, and grammar, to estimate the overall sentiment expressed in the text.
+    <br><br>
+        We tested Textblob’s polarity function against the set of training and test data we produced. Our final results showed an overall accuracy of <b>89.6%</b>. This was the highest recorded accuracy compared with all other models.
+</p>
+    <br>
+</div>
 
-<h2> TextBlob's Built-in Polarity function </h2>
-<p>TextBlob's Built-in Polarity function is a </p>
-<br>
-
-<h2> Linear Regression </h2>
-<p>Linear Regression is a </p>
-<br>
-
-{{ confusionmatrix | safe }}
-
-{{ wordmap | safe }}
+<div>
+    <h2> Logisitc Regression </h2>
+    <p>Logistic regression is a statistical model used to analyse the relationship between a dependent variable and one or more independent variables. In sentiment analysis,  It works by modeling the probability of a binary outcome, in this case, the probability that a piece of text is positive or negative. The logistic regression model calculates a set of weights for each feature (word) in the input text, and these weights are used to calculate the probability of the sentiment being positive or negative.
+    <br><br>
+        When trained on our dataset, the logistic regression model showed the highest accuracy figures of all other standard classifiers. The overall accuracy was <b>85%</b>.
+    </p>
+    {{ confusionmatrix | safe }}
+</div>
 
 </body>
 

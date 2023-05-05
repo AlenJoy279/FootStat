@@ -88,28 +88,10 @@ def get_all_polarity(): # returns the average polarity in every month
                      "Aug 2022": 0, "Sep 2022": 0, "Oct 2022": 0, "Nov 2022": 0, "Dec 2022": 0}
 
     for date in all_months.keys():
-        avgm = get_monthly_polarity(date[0:3], date[4:8])
+        avgm = get_daily_polarity(date[0:3], date[4:8]) # switch get_monthly_polarity for get_daily_polarity - they do the same thing - actually, get_monthly polarit averages an average
         all_months[date] = avgm
-        #print(avgm)
+
     return all_months
-
-def get_monthly_polarity(month, year):
-    try:
-        total = 0
-        daily_pol = get_daily_polarity(month, year)
-        for date, daily_sentiment in daily_pol.items():
-            #print(daily_sentiment)
-            total += daily_sentiment
-
-        monthly_avg = total / len(daily_pol)
-
-        #print("MONTHLY AVERAGE POLARITY of " + month + " " + year + " = " + str(monthly_avg))
-
-        return monthly_avg
-
-    except Exception as e:
-        print(e)
-        raise Exception("An error was encountered. Did you specify month and year as string values?")
 
 
 def get_daily_polarity(month, year):
@@ -177,7 +159,7 @@ def get_daily_polarity(month, year):
 
         for tweet in TweetPolarity.objects.all():
             t_day = tweet.created_at[8:10]
-            t_month = tweet.created_at[4:7] # in created_at string select substring from position 4 tp 7, which is the month
+            t_month = tweet.created_at[4:7] # in created_at string select substring from position 4 to 7, which is the month
             t_year = tweet.created_at[26:30] # select substring which is the year
 
             t_polarity = tweet.polarity
@@ -212,12 +194,7 @@ def get_all_daily_polarity(): # returns the daily polarities for every day of ev
 
 #get_daily_count("21", "March", "2020")
 
-def get_polarity_by_keydate():
-    keydates = { "Tue Apr 07 2020" : 0, "Fri Jun 26 2020": 0, "Thu Jul 16 2020": 0, "Sun Aug 02 2020": 0,
-                 "Tue Sep 22 2020": 0, "Fri Oct 02 2020": 0, "Mon Nov 09 2020":0, "Mon Nov 23 2020":0,
-                 "Mon Feb 22 2021": 0, "Mon Aug 23 2021": 0, "Fri Nov 19 2021": 0, "Fri Nov 26 2021": 0,
-                 "Mon Jan 31 2022": 0, "Tue Mar 29 2022": 0
-                 }
+def get_polarity_by_keydate(keydates):
     for date in keydates.keys():
         pols = TweetPolarity.objects.filter(created_at__contains=date[0:10])
         total = 0.0
@@ -225,3 +202,21 @@ def get_polarity_by_keydate():
             total += float(t.polarity)
         keydates[date] = total / len(pols)
     return keydates
+
+def get_polarity_by_week(dates):
+    total = 0.0
+    total_length = 0
+    for d in dates: # iterate over every day of the list "dates"
+        pols = TweetPolarity.objects.filter(created_at__contains=d[0:10]) # d[0:10] = "Tue 06 Feb"
+        for t in pols:
+            total += float(t.polarity) # add polarity to total, then divide by total number of tweets to get avg.
+
+        total_length += len(pols)
+
+    week_pol = total / total_length
+    print()
+
+
+    return week_pol
+
+
