@@ -100,26 +100,39 @@ img{
 
 {{ barchart | safe }}
 <div>
-<h2> Naive Bayes Classifier</h2>
+<h2> Naïve Bayes Classifier</h2>
     <p>Classification is where a model or classifier is constructed to predict categorical labels. It is the process of learning a model that can differentiate between different classes of data.
     Naïve Bayes is a classifier method that applies Bayes’ Theorem with the assumption that the predictors used are independent. Bayes’ Theorem uses conditional probabilities among predictors to determine the probability of a class variable occurring, given that another variable has already taken place.
     </p>
          <img src="https://miro.medium.com/v2/resize:fit:1400/1*LB-G6WBuswEfpg20FMighA.png" alt="Bayes Theorem">
     <br>
          <p>We utilized the Text Blob library to develop a Naïve Bayes Classifier. We generated a set of training and test data and refined it to achieve the highest levels of accuracy. Our final results demonstrated an overall accuracy rate of <b>81.4%</b>.</p>
+    <br>
+    <p>The confusion matrix for the Naïve Bayes classifier developed is shown below:</p>
+    {{ bayescm | safe}}
+    <br><br>
+    <p>The ROC curve for the Naïve Bayes classifier developed is shown below:</p>
+    {{ bayesroc | safe }}
 </div>
      <br>
 <div>
     <h2> Decision Tree Classifier</h2>
-    <p>A decision tree is a tree-like structure where each internal node (non-leaf node) represents a test on an attribute, each branch represents a possible outcome of the test, and each leaf node (or terminal node) holds a class label. Decision tree induction is the process of learning decision trees from training tuples that have class labels assigned to them.
+    <p>A Decision Tree is a tree-like structure where each internal node (non-leaf node) represents a test on an attribute, each branch represents a possible outcome of the test, and each leaf node (or terminal node) holds a class label. Decision tree induction is the process of learning decision trees from training tuples that have class labels assigned to them.
         <br><br>
         <img src="https://jeremykun.com/wp-content/uploads/2012/09/tree.png" alt="Diagram of Decision Tree">
 <br><br>
-        To classify data, decision trees use the Top-Down Induction of Decision Trees method. This method generates decision rules in the form of a decision tree. Decision trees are constructed by recursively partitioning the values of attributes.
+        To classify data, Decision Trees use the Top-Down Induction of Decision Trees method. This method generates decision rules in the form of a decision tree. Decision trees are constructed by recursively partitioning the values of attributes.
         <br><br>
 We used Text Blob’s library to build a Decision Tree Classifier. We developed a set of training and test data which was refined to produce the highest levels of accuracy. Our final results showed an overall accuracy of <b>77%</b>.
 </p>
     <br>
+    <p>The confusion matrix for the Decision Tree classifier developed is shown below:</p>
+    <br><br>
+    {{ dtcm | safe}}
+    <br><br>
+    <br><br>
+    <p>The ROC curve for the Decision Tree classifier developed is shown below:</p>
+    {{ dtroc | safe }}
 </div>
 
 <div>
@@ -161,11 +174,15 @@ We used Text Blob’s library to build a Decision Tree Classifier. We developed 
 
 <div>
     <h2> Logisitc Regression </h2>
-    <p>Logistic regression is a statistical model used to analyse the relationship between a dependent variable and one or more independent variables. In sentiment analysis,  It works by modeling the probability of a binary outcome, in this case, the probability that a piece of text is positive or negative. The logistic regression model calculates a set of weights for each feature (word) in the input text, and these weights are used to calculate the probability of the sentiment being positive or negative.
+    <p>Logistic Regression is a statistical model used to analyse the relationship between a dependent variable and one or more independent variables. In sentiment analysis,  It works by modeling the probability of a binary outcome, in this case, the probability that a piece of text is positive or negative. The logistic regression model calculates a set of weights for each feature (word) in the input text, and these weights are used to calculate the probability of the sentiment being positive or negative.
     <br><br>
         When trained on our dataset, the logistic regression model showed the highest accuracy figures of all other standard classifiers. The overall accuracy was <b>85%</b>.
     </p>
+    <p>The confusion matrix for the Logistic regression developed is shown below:</p>
     {{ confusionmatrix | safe }}
+    <br><br>
+    <p>The ROC curve for the Logistic Regression  developed is shown below:</p>
+    {{ lrroc | safe }}
 </div>
 
 </body>

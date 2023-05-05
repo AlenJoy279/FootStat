@@ -13,7 +13,7 @@ class Tweet(models.Model):
     created_at = models.CharField(max_length=200,null=True)
     id = models.IntegerField(primary_key=True)
     id_str = models.CharField(max_length=750, null=True)
-    full_text = models.CharField(max_length=280,null=True)
+    full_text = models.CharField(max_length=10000,null=True)
     display_text_range = models.CharField(max_length=500,null=True)
     entities = models.CharField(max_length=500,null=True)
     source = models.CharField(max_length=500,null=True)
