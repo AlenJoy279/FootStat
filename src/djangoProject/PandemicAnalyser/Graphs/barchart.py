@@ -62,3 +62,32 @@ def barchart_models(bayes, dt, km, knn, lr, txtblob):
 
 
     return centered_html
+
+
+def barchart_keydates(date, weekly, monthly, yearly):
+    sizes = [date, weekly, monthly, yearly]
+    labels = ['Daily', 'Weekly', 'Monthly', 'Yearly']
+
+    # Set the positions of the bars on the x-axis
+
+    colors = ['green','orange', 'purple', 'red']
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    # Set the x-tick marks to the center of each bar
+    x_pos = np.arange(len(labels))
+    ax.bar(x_pos, sizes, color=colors)
+
+    ax.set_xticklabels(["Day", "Week", "Month", "Year"])
+    ax.set_xticks(x_pos)
+
+    # Set the x-tick labels at each bar
+    plt.xlabel('Timeframe')
+    plt.ylabel('Polarity Values')
+    plt.title('Sentiment Polarity Comparison')
+
+    html = mpld3.fig_to_html(fig)
+    # Add center alignment to the HTML code
+    centered_html = f'<div style="text-align: center">{html}</div>'
+
+
+    return centered_html

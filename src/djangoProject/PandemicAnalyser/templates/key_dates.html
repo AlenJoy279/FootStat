@@ -9,36 +9,80 @@
     <title>Sentiment of key dates during Covid-19 Pandemic</title>
         <style>
 
-            .topnav {
-      background-color: #f0f0f0;
-      padding: 10px;
-    }
+.topnav {
+  background-color: #f0f0f0;
+  padding: 20px 0;
+    display: flex;
+    justify-content: center
+}
 
-    .topnav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
+.topnav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-    .topnav li {
-      display: inline-block;
-      margin-right: 50px;
-    }
+.topnav li {
+  margin-right: 50px;
+}
 
-    .topnav a {
-        font-size: 25px;
-      color: #333;
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 5px;
+.topnav a {
+  color: #333;
+    font-size: 25px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
     margin-right: 75px;
     margin-left: 75px;
+}
+
+.topnav a:hover {
+  background-color: #333;
+  color: #D3D3D3;
+}
+
+
+    body {
+	  background: linear-gradient(to right, lightgrey 0%, lightgrey 12.5%, white 12.5%, white 87.5%, lightgrey 87.5%, lightgrey 100%);
+	  height: 100vh;
+	  margin: 0;
+	padding: 0;
     }
 
-    .topnav a:hover {
-      background-color: #333;
-      color: #fff;
+    .text {
+      text-align: center;
+      margin: 50px auto;
+      max-width: 800px;
     }
+
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 30px;
+        margin-left: 250px ;
+        margin-right: 150px;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 30px;
+        margin-left: 250px ;
+    }
+    h3 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 30px;
+        margin-left: 250px ;
+    }
+
+    p {
+      font-size: 18px;
+      margin-left: 250px ;
+        margin-right: 250px;
+    }
+
     </style>
 </head>
 <body>
@@ -47,134 +91,134 @@
   <a href="/daily/">Daily</a>
   <a class="/active" href="#keydates">Key Dates</a>
   <a href="/models/">Models</a>
-  <a href="#about">About</a>
+  <a href="/about/">About</a>
 </div>
-
     <h1>Key Dates during Covid-19 Pandemic</h1>
-    <p>This page shows the sentiment at key dates and compares with the average sentiment during the month</p>
+    <p>This page shows the sentiment at key dates and compares with the average sentiment of the week, month and year the key date occurred in.
+    <br> The information is shown as a barchart. The polarity for the key date is shown as a green bar, the week is shown in yellow, the month is shown in purple and the year is shown in red. </p>
+
     <p>The key dates were from <a href="https://www.theguardian.com/world/ng-interactive/2020/dec/14/coronavirus-2020-timeline-covid-19">The Guardian Timeline of Covid-19 Pandemic</a> and <a href="https://edition.cnn.com/2021/08/09/health/covid-19-pandemic-timeline-fast-facts/index.html">CNN Pandemic Fast Facts</a></p>
     <br>
-         <h3>7 April 2020</h3>
-<p>Boris Johnson tested positive for Covid-19 and 11 days after, on the 7th of April Boris Johnson is moved to intensive care</p>
-<br>
+<div>
+    <h3>7 April 2020</h3>
+    <p>Prime Minister Boris Johns is moved to intensive care after testing positive for Covid-19 11 days prior.</p>
+    <br>
+    <div>{{ bchart | safe }}</div>
+</div>
+{#week of 6-12 april 2020 polarity = 0.14845#}
+{# 6 - 0.14055, 7 - 0.1368, 8 - 0.130180, 9 - 0.1586, 10 - 0.13884, 11 - 0.2077, 12 - 0.1265#}
+<div>
+    <h3>26 June 2020</h3>
+    <p>Airport terminals in Paris and London which had been closed to commercial flights since April 1st reopen.</p>
+    <br>
+    <div>{{ bchart1 | safe }}</div>
+</div>
+{#22-28 june 2020#}
 
-<h3>26 June 2020</h3>
-<p>Airport terminals in Paris and London reopen. There are optimistic predictions that the worst of the pandemic is behind us, though vaccines could still be at least a year away.</p>
-<br>
+<div>
+    <h3>2 August 2020</h3>
+    <p>The rate of new infections being detected globally has plateaued at more than 200,000 cases a day. Spain, Germany, Italy and the UK are detecting fewer than 50 positive cases per 100,000 people, their lowest rates since the beginning of the outbreak. <br>
+         <div>{{ bchart3 | safe }}</div>
+</div>
+{#27-2 august 2020#}
 
-<h3>16 July 2020</h3>
-<p>US cases surge
-After a slow start, including the distribution of faulty testing kits, stay-at-home orders in New York and other states have flattened the rate of new infections by May. But with the economic toll growing, Donald Trump starts urging the “liberation” of locked-down states.</p>
-<br>
+<div>
+    <h3>22 September 2020</h3>
+    <p>New Covid restrictions are announced in the UK and around Europe - Boris Johnson to set out limited nationwide coronavirus restrictions on Tuesday, covid cases in the UK are 6400 that day. Covid cases in Europe increase quickly after the drop in the summer months.<br>
+    <div>{{ bchart4 | safe }}</div>
+</div>
 
-<h3>2 August 2020</h3>
-<p>Summer reprieve
-The rate of new infections being detected globally has plateaued, albeit at more than 200,000 cases a day. Spain, Germany, Italy and the UK are detecting fewer than 50 positive cases per 100,000 people, their lowest rates since the beginning of the outbreak.
-
-Borders across Europe have reopened and people are on the move, visiting Greek islands, French vineyards and Italian countryside hamlets. National Geographic calls it the “summer of road trips”.
-
-Restaurants in the UK return to life, helped by chancellor Rishi Sunak’s “eat out to help out” scheme, which subsidises food and drink for three days a week throughout August. The British economy rebounds by more than 15% over the summer months; at times, sitting in pub gardens or dining outdoors, life even feels normal.
-
-Some public health experts see worrying signs. The virus is still out there, they warn. Young people are now making up a large proportion of new cases, many becoming infected at the pubs and cafes where they work. Eventually, they will come into contact with older relatives.</p>
-<br>
-
-<h3>22 September 2020</h3>
-<p>The virus roars back
-“We have a very serious situation unfolding before us,” Hans Kluge, the WHO’s Europe director warns in a media briefing during the week. After a short respite over summer, the virus returns to Europe with shocking speed. Weekly cases on the continent have soared higher than at the first peak of the disease in March.
-
-0
-Total reported cases in Palau, Micronesia, Nauru, Kiribati, Tuvalu and Tonga, North Korea* and Turkmenistan*
-
-Cooler weather, pushing people indoors where the virus spreads more easily, is inflating caseloads across the northern hemisphere – and winter is still months away.
-
-Boris Johnson tells parliament that Covid-19 hospital admissions have doubled in England over the past fortnight and the country is at a “perilous turning point”. But he resists ordering the national lockdown that some health experts are pushing for, and which rebels in his cabinet bitterly oppose.
-
-In India, the first wave never ebbed, and its outbreak is now the world’s fastest. The country has gained 5m new cases in two months, though the death rate among its young population is relatively low. For many in the country of 1.3bn people, it is the worst recession on record that is biting harder than Covid-19.</p>
-<br>
-
-
+{#21-27 september 2020#}
+<div>
 <h3>2 October 2020</h3>
-<p>Trump tests positive
-In the middle of the night in the US, the tweet appears: “Tonight, @FLOTUS and I tested positive for Covid-19. We will begin our quarantine and recovery process immediately.” After criticising masks, repeatedly likening Covid-19 to flu, and continuing to hold election rallies (that were linked led to an estimated to 30,000 new cases and 700 deaths), Donald Trump contracts the virus in a development that threatens to upend the US presidential race.
+    <p>US President Donald Trump tests positive for Coronavirus. The night of second of October he tweeted: “Tonight, @FLOTUS and I tested positive for Covid-19. We will begin our quarantine and recovery process immediately.”. By this time, the total deaths in the US is 209,000.</p>
+    <br>
+    <div>{{ bchart5 | safe }}</div>
+</div>
+{#28 September - 4 October 2020#}
 
-Trump’s handling of his own sickness over the next days appears to mirror his administration’s uneven approach to the pandemic. After the US president is moved to hospital, his doctor sows confusion in a media briefing by claiming his symptoms are mild. He is contradicted immediately afterwards by the White House chief of staff, Mark Meadows, who tells journalists Trump’s condition is “very concerning” and the path to recovery is not yet clear.
+<div>
+    <h3>9 November 2020</h3>
+    <p>
+    A second wave of cases is occurring in Europe as more countries return to lockdown and restrictions.  England has returned to a stringent lockdown. France has closed bars and restaurants and requires citizens to seek permission to leave their homes. In Spain, bars and restaurants remain open until midnight.
 
-Defying guidelines to isolate, Trump insists on thanking crowds of supporters outside his hospital by driving past in his presidential vehicle. As his condition improves over the next days – and though he remains infectious – Trump signals his return to the White House on 6 October with another tweet: “Don’t be afraid of Covid. Don’t let it dominate your life,” he says.
 
-By that stage, the disease has killed 209,000 Americans.</p>
+    Daily US cases exceed 130,000 a day, and 50 million worldwide infections are reported.
 <br>
+         <div>{{ bchart6 | safe }}</div>
+</div>
 
+{#9-15 November 2020#}
+<div>
+    <h3>23 November 2020</h3>
+    <p>AstraZeneca and Oxford University report their vaccine candidate has at least 61% efficacy and up to 90%. Pfizer and Moderna announced over the previous fortnight that their formulations halted symptoms in up to 95% of trial participants. <br>
+    <div>{{ bchart7 | safe }}</div>
+</div>
 
-<h3>9 November 2020</h3>
-<p>A ‘very dark winter’
-England has returned to a stringent lockdown. France has closed bars and restaurants and requires citizens to seek permission to leave their homes. Nearly a third of Spain’s intensive-care capacity is being used to treat Covid-19 patients. A key question – whether Covid-19 is a seasonal virus that worsens in cooler months – has been decisively answered, and Europe is in the grip of a second wave with caseloads exceeding those of the spring.
+{#23 - 29 November 2020#}
 
-Even Sweden, where less rigorous restrictions have served as a model for quarantine critics, has experienced a surge in cases and introduces curfews on bars and restaurants, while Stockholm bans people from visiting elderly relatives at nursing homes.
-
-Daily US cases exceed 130,000 a day, and will touch 200,000 before the end of the month. Joe Biden, the president-elect, warns Americans they face a “very dark winter”.</p>
-<br>
-
-<h3>23 November 2020</h3>
-<p>Here come the vaccines
-AstraZeneca and Oxford University report their vaccine candidate has at least 61% efficacy, building on the results from Pfizer and Moderna announced over the previous fortnight, which found their formulations halted symptoms in up to 95% of trial participants.
-
-The results transform the future shape of the pandemic, with hopes that vaccines could be rolled out on a mass scale in the UK, Europe and the US by the first quarter of 2021. After the Pfizer jab is quickly approved in the UK, on Tuesday 8 December, Margaret Keenan, 90, becomes the first person in the world to be given an approved vaccine at her local hospital in Coventry.
-
-Supply constraints and massive pre-purchasing by wealthy countries make it unclear when developing and middle-income countries receive thevaccine, with warnings that some may be waiting until 2023 to receive enough to induce herd immunity.
-
-Still, with economies reeling from another lockdown, new US cases surging past 200,000 a day and the coldest months of the year still ahead for the northern hemisphere, there is suddenly a pathway out of the crisis – highly effective vaccines developed in record time. “The light at the end of this long, dark tunnel is growing brighter,” the WHO’s director general, Tedros Adhanom Ghebreyesus, tells a media conference.
-
-* Though North Korea and Turkmenistan have both officially recorded zero cases, observers believe the pandemic has reached both nations.</p>
-<br>
-
-
-<h3>22 February 2021</h3>
-<p>The death toll from Covid-19 exceeds 500,000 in the United States.</p>
-<p> The polarity on this day was {{ Apr072020 | safe }}</p>
-<br>
-
-<h3>23 August 2021</h3>
-<p>The FDA grants full approval to the Pfizer/BioNTech Covid-19 vaccine for people age 16 and older, making it the first coronavirus vaccine approved by the FDA.</p>
-<p> The polarity on this day was {{ Aug232020 | safe }}</p>
-<br>
-
- <h3>19 November 2021</h3>
-<p>The FDA authorizes boosters of the Pfizer/BioNTech and Moderna Covid-19 vaccines for all adults. The same day, the CDC also endorses boosters for all adults. </p>
-<p> The polarity on this day was {{ Nov192020 | safe }}</p>
-<br>
-
-<h3>26 November 2021</h3>
-<p>HO declared that the world was facing a new variant of concern: Omicron.</p>
-<br>
-
- <h3>31 January 2022</h3>
-<p>The FDA grants full approval to Moderna’s Covid-19 vaccine for those ages 18 and older. This is the second coronavirus vaccine given full approval by the FDA. </p>
-<br>
-
+<div>
+  <h3>22 February 2021</h3>
+  <p>The death toll from Covid-19 exceeds 500,000 in the United States.</p>
+  <br>
+  <div>{{ bchart8 | safe }}</div>
+</div>
+{#17-23 February 2021#}
+<div>
+    <h3>23 August 2021</h3>
+    <p>The FDA grants full approval to the Pfizer/BioNTech Covid-19 vaccine for people age 16 and older, making it the first coronavirus vaccine approved by the FDA.</p>
+    <br>
+    <div>{{ bchart9 | safe }}</div>
+</div>
+{#23-29 August 2021#}
+<div>
+    <h3>19 November 2021</h3>
+    <p>The FDA authorizes boosters of the Pfizer/BioNTech and Moderna Covid-19 vaccines for all adults. The same day, the CDC also endorses boosters for all adults. </p>
+    <br>
+    <div>{{ bchart10 | safe }}</div>
+</div>
+{#15-21 November 2021#}
+<div>
+    <h3>26 November 2021</h3>
+    <p>HO declared that the world was facing a new variant of concern named Omicron.</p>
+    <br>
+    <div>{{ bchart11 | safe }} </div>
+</div>
+{#22-28 November 2021#}
+<div>
+    <h3>31 January 2022</h3>
+    <p>The FDA grants full approval to Moderna’s Covid-19 vaccine for those ages 18 and older. This is the second coronavirus vaccine given full approval by the FDA. </p>
+    <br>
+    <div>{{ bchart12 | safe }}</div>
+</div>
+{#31 Jan - 6 February 2022#}
+<div>
 <h3>29 March 2022</h3>
-<p>The FDA authorizes a second booster of the Pfizer/BioNTech and Moderna Covid-19 vaccines for adults 50 and older. That same day, the CDC also endorses a second booster for the same age group.</p>
-<br>
+    <p>The FDA authorizes a second booster of the Pfizer/BioNTech and Moderna Covid-19 vaccines for adults 50 and older. That same day, the CDC also endorses a second booster for the same age group.</p>
+    <br>
+    <div>{{ bchart13 | safe }}</div>
+</div>
+{#28 March - 3 April 2022#}
 
-
-<p> Average polarity across all months: </p>
-
-<p>Average polarity in April 2020 = 0.1362</p>
-<p>Average polarity in June 2020 = 0.1363</p>
-<p>Average polarity in July 2020 = 0.1478</p>
-<p>Average polarity in August 2020 = 0.1479</p>
-<p>Average polarity in September 2020 = 0.1248</p>
-<p>Average polarity in October 2020 = 0.1235</p>
-<p>Average polarity in November 2020 = 0.1265</p>
-<p>Average polarity in December 2020 = 0.1235</p>
-<p>Average polarity in February 2021 = 0.1216</p>
-<p>Average polarity in August 2021 = 0.1058</p>
-<p>Average polarity in November 2021 = 0.1122   </p>
-<p>Average polarity in January 2022 = 0.0706   </p>
-<p>Average polarity in March 2022 = 0.0935  </p>
-
-<p>Average polarity in 2020: 0.1312</p>
-<p>Average polarity in 2021: 0.11256</p>
-<p>Average polarity in 2022: 0.0931</p>
+{#<p> Average polarity across all months: </p>#}
+{##}
+{#<p>Average polarity in April 2020 = 0.1362</p>#}
+{#<p>Average polarity in June 2020 = 0.1363</p>#}
+{#<p>Average polarity in July 2020 = 0.1478</p>#}
+{#<p>Average polarity in August 2020 = 0.1479</p>#}
+{#<p>Average polarity in September 2020 = 0.1248</p>#}
+{#<p>Average polarity in October 2020 = 0.1235</p>#}
+{#<p>Average polarity in November 2020 = 0.1265</p>#}
+{#<p>Average polarity in December 2020 = 0.1235</p>#}
+{#<p>Average polarity in February 2021 = 0.1216</p>#}
+{#<p>Average polarity in August 2021 = 0.1058</p>#}
+{#<p>Average polarity in November 2021 = 0.1122   </p>#}
+{#<p>Average polarity in January 2022 = 0.0706   </p>#}
+{#<p>Average polarity in March 2022 = 0.0935  </p>#}
+{##}
+{#<p>Average polarity in 2020: 0.1312</p>#}
+{#<p>Average polarity in 2021: 0.11256</p>#}
+{#<p>Average polarity in 2022: 0.0931</p>#}
 
 {#"Mar 2020": 0.054#}
 {#"Apr 2020": 0.1362#}
