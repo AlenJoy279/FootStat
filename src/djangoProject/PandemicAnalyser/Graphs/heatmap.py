@@ -126,7 +126,7 @@ def get_tweet_heatmap(path_to_csv):
 
     # Plot the choropleth map using the merged data with custom color scaling
     fig, ax = plt.subplots(figsize=(14, 10))
-    merged_data.plot(column='place', linewidth=0.8, edgecolor='0.8', ax=ax,
+    merged_data.plot(column='place', cmap='PuBu', linewidth=0.8, edgecolor='0.8', ax=ax,
                      legend=True,
                      legend_kwds={'label': 'Monthly Tweet Frequency', 'orientation': 'horizontal'})
     ax.axis('off')
