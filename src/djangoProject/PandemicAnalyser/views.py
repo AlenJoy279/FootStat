@@ -128,9 +128,15 @@ def keydates(request):
     #     dates = key = list(key_dates)[i]
     #
     #     value = list(key_dates.values())[i]
+    # keydates = {"Tue Apr 07 2020": 0, "Fri Jun 26 2020": 0, "Sun Aug 02 2020": 0,
+    #             "Tue Sep 22 2020": 0, "Fri Oct 02 2020": 0, "Mon Nov 09 2020": 0, "Mon Nov 23 2020": 0,
+    #             "Mon Feb 22 2021": 0, "Mon Aug 23 2021": 0, "Fri Nov 19 2021": 0, "Fri Nov 26 2021": 0,
+    #             "Mon Jan 31 2022": 0, "Tue Mar 29 2022": 0
+    #             }
+    # key_dates = get_polarity_by_keydate(keydates) # save results in a list to improve performance of page
 
-    #key_dates = get_polarity_by_keydate() # size = 12
-    saved_keydates = [0.14054810600872966, 0.15304431755898318,0.1375485197159457,0.16328541027636254,0.16328541027636254,0.10349607837589297,
+
+    saved_keydates = [0.14054810600872966, 0.15304431755898318,0.163285410276362544,0.10349607837589297,
                       0.10685744981802997,0.13143202378373287,0.1282361845622578,0.1265807905825768,0.12059142380792934,0.10401309604574527,
                       0.15276981513705368,0.09882007893879585,0.08691728795895465] # results from get_polarity_by_keydate()
 
@@ -141,33 +147,39 @@ def keydates(request):
     # apr7pol = get_polarity_by_week(april7)
     # print("Apr 6-12 2020: " + str(apr7pol))
 
+    weekly_pol = [0.14895861255695822, 0.14175093901961183,0.1479684015380725,0.11972344063970056,0.10735286785623825,0.12746099383006945,
+                      0.1311043011637578,0.1181601523600599,0.1086768056816407,0.10561466420070531,0.11681086053503623,0.06820246806111255,
+                      0.08403333852052453]
+
+
+
 
     # barchart for April 7 2020
-    bchart = barchart_keydates(saved_keydates[0], 0.207718, 0.1362, 0.1312)
+    bchart = barchart_keydates(saved_keydates[0], weekly_pol[0], 0.1362, 0.1312)
     #June 26 2020
-    bchart1 = barchart_keydates(saved_keydates[1], 0.12383, 0.1363, 0.1312)
+    bchart1 = barchart_keydates(saved_keydates[1], weekly_pol[1], 0.1363, 0.1312)
     # August 2020
-    bchart3 = barchart_keydates(saved_keydates[3], 0.163285, 0.1479, 0.1312)
+    bchart3 = barchart_keydates(saved_keydates[2], weekly_pol[2], 0.1479, 0.1312)
     # September 2020
-    bchart4 = barchart_keydates(saved_keydates[4], 0.12184, 0.1248, 0.1312)
+    bchart4 = barchart_keydates(saved_keydates[3], weekly_pol[3], 0.1248, 0.1312)
     # October 2020
-    bchart5 = barchart_keydates(saved_keydates[5], 0.12177, 0.1235, 0.1312)
+    bchart5 = barchart_keydates(saved_keydates[4], weekly_pol[4], 0.1235, 0.1312)
     # November 9-15 2020
-    bchart6 = barchart_keydates(saved_keydates[6], 0.13022, 0.1265, 0.1312)
+    bchart6 = barchart_keydates(saved_keydates[5], weekly_pol[5], 0.1265, 0.1312)
     # November 23-29 2020
-    bchart7 = barchart_keydates(saved_keydates[7], 0.10285, 0.1265, 0.11256)
+    bchart7 = barchart_keydates(saved_keydates[6], weekly_pol[6], 0.1265, 0.11256)
     # February 2021
-    bchart8 = barchart_keydates(saved_keydates[8], 0.13323, 0.1216, 0.11256)
+    bchart8 = barchart_keydates(saved_keydates[7], weekly_pol[7], 0.1216, 0.11256)
     # August 2021
-    bchart9 = barchart_keydates(saved_keydates[9], 0.11866, 0.1058, 0.11256)
+    bchart9 = barchart_keydates(saved_keydates[8], weekly_pol[8], 0.1058, 0.11256)
     # November 15-21 2021
-    bchart10 = barchart_keydates(saved_keydates[10], 0.0900, 0.1122, 0.11256)
+    bchart10 = barchart_keydates(saved_keydates[9], weekly_pol[9], 0.1122, 0.11256)
     # November 22-28 2021
-    bchart11 = barchart_keydates(saved_keydates[11], 0.073600, 0.1362, 0.11256)
+    bchart11 = barchart_keydates(saved_keydates[10], weekly_pol[10], 0.1362, 0.11256)
     # January 2022
-    bchart12 = barchart_keydates(saved_keydates[12], 0.051876, 0.0706, 0.0931)
+    bchart12 = barchart_keydates(saved_keydates[11], weekly_pol[11], 0.0706, 0.0931)
     # March 2022
-    bchart13 = barchart_keydates(saved_keydates[13], 0.0701637, 0.0935, 0.0931)
+    bchart13 = barchart_keydates(saved_keydates[12], weekly_pol[12], 0.0935, 0.0931)
 
 
     return render(request, 'key_dates.html',{"bchart": bchart, "bchart1": bchart1, "bchart3": bchart3,

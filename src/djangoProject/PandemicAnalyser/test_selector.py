@@ -9,9 +9,9 @@ class SelectorTestCase(TestCase):
         self.tweet1 = Tweet.objects.create(created_at='Sat Apr 15 08:08:08 +0000 2021', id=1, id_str='1', full_text='Test tweet 1', source='Test')
         self.tweet2 = Tweet.objects.create(created_at='Fri Apr 23 18:54:14 +0000 2021', id=2, id_str='2', full_text='Test tweet 2', source='Test2')
 
-        self.tweetp1 = TweetPolarity.objects.create(id=1, id_str='1', full_text="This is a positive tweet", created_at="Sat Apr 15 08:08:08 +0000 2021")
-        self.tweetp2 = TweetPolarity.objects.create(id=2, id_str='2', full_text="This is a neutral tweet", created_at="Fri Apr 23 19:56:11 +0000 2021")
-        self.tweetp3 = TweetPolarity.objects.create(id=3, id_str='3', full_text="This is a negative tweet", created_at="Sat Mar 25 03:44:66 +0000 2022")
+        self.tweetp1 = TweetPolarity.objects.create(id=1, id_str='1', full_text="This is a positive tweet", created_at="Sat Apr 15 08:08:08 +0000 2021", polarity = 0.2272)
+        self.tweetp2 = TweetPolarity.objects.create(id=2, id_str='2', full_text="This is a neutral tweet", created_at="Fri Apr 23 19:56:11 +0000 2021", polarity = 0.0)
+        self.tweetp3 = TweetPolarity.objects.create(id=3, id_str='3', full_text="This is a negative tweet", created_at="Sat Mar 25 03:44:66 +0000 2022", polarity = -0.3)
 
     # select_by_date unit tests
     def test_select_by_date(self):
@@ -158,3 +158,37 @@ class SelectorTestCase(TestCase):
     def test_get_all_daily_polarity(self, mock_get_daily_polarity):
         get_all_daily_polarity()
         self.assertEqual(mock_get_daily_polarity.call_count, 34) # mocked function called 34 times - one for every month in DB
+
+
+    def test_get_polarity_by_keydate(self):
+        # Call the function being tested
+        keydates = {"Sat Apr 15": 0, "Fri Apr 23": 0, "Sat Mar 25": 0}
+        result = get_polarity_by_keydate(keydates)
+
+        # expected results are just the polarity as these are the only values for these dates - added in setUp
+        expected_results = {
+            "Sat Apr 15": 0.2272,
+            "Fri Apr 23": 0.0,
+            "Sat Mar 25": -0.3
+        }
+
+        # Compare the actual result with the expected result for each key date
+        for keydate, expected_result in expected_results.items():
+            self.assertAlmostEqual(result[keydate], expected_result, places=2)
+
+
+    def test_get_polarity_by_week(self):
+        # test for these 2 dates we added previosuly
+        dates = ["Sat Apr 15", "Fri Apr 23"]
+
+        # Call the function being tested
+        result = get_polarity_by_week(dates)
+        # tweetp1 should have polarity = 0.2272, tweetp2 has polarity 0.02 - the avg of these two is 0.1136
+        # (0.0 + 0.22727) / 2
+
+        # Calculate the expected average polarity manually
+        expected_result = (0.0 + 0.22727) / 2
+        print("Result: " + str(result))
+
+        # Compare the actual result with the expected result
+        self.assertAlmostEqual(result, expected_result, places=2)
