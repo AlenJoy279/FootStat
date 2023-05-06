@@ -76,8 +76,8 @@ p {
 }
 
 img{
-    margin-right: 200px;
-    margin-left: 500px;
+    margin-right: 250px;
+    margin-left: 200px;
 }
 
   </style>
@@ -94,7 +94,7 @@ img{
      <h1 class="text">MODEL DATA</h1>
      <p class="text">
          On this page we show the different models we tested for sentiment analysis.
-         The respective accuracy of every model is shown as a bar chart and the accuracy is shown in a -1 to 1 range.
+         The respective accuracy of every model is shown as a bar chart and the accuracy is shown in a 0 to 1 range.
          There is also an explanation of every model and detailed stats of the linear regression model, including a confusion matrix.</p>
 <p class="text"> We tested the accuracy of a number of different models. Below is shown the total accuracy statistics graphed by model.</p>
 
@@ -173,7 +173,7 @@ We used Text Blob’s library to build a Decision Tree Classifier. We developed 
 </div>
 
 <div>
-    <h2> Logisitc Regression </h2>
+    <h2> Logistic Regression </h2>
     <p>Logistic Regression is a statistical model used to analyse the relationship between a dependent variable and one or more independent variables. In sentiment analysis,  It works by modeling the probability of a binary outcome, in this case, the probability that a piece of text is positive or negative. The logistic regression model calculates a set of weights for each feature (word) in the input text, and these weights are used to calculate the probability of the sentiment being positive or negative.
     <br><br>
         When trained on our dataset, the logistic regression model showed the highest accuracy figures of all other standard classifiers. The overall accuracy was <b>85%</b>.
